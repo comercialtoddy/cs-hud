@@ -1,9 +1,42 @@
 @import '/dependencies/normalize.css';
 
+/* Reset completo para overlay */
+* {
+	-webkit-app-region: no-drag;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	overflow: hidden;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
 body {
 	--background: #212121;
 	--color: #aeaeae;
 
 	background: var(--background);
 	color: var(--color);
+}
+
+/* Overlay específico */
+body[style*="background: none"] {
+	background: transparent !important;
+}
+
+/* Remover qualquer barra de título ou interface */
+::-webkit-scrollbar {
+	display: none;
+}
+
+#app {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	pointer-events: none;
 }

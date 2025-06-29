@@ -1,7 +1,8 @@
 export default {
 	data() {
+		const urlParams = new URL(window.location).searchParams
 		return {
-			isRequested: new URL(window.location).searchParams.has('corners'),
+			isRequested: urlParams.has('corners') || urlParams.has('transparent'),
 		}
 	},
 }

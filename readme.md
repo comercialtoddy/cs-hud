@@ -11,9 +11,20 @@ The easiest way is to use the pre-packaged binaries, but other options will be a
 1. Also download [`gamestate_integration_drweissbrot_hud.cfg`](https://github.com/drweissbrot/cs-hud/releases/latest/download/gamestate_integration_drweissbrot_hud.cfg).
 1. Head to your CS2 folder and the `game/csgo/cfg` subdirectory, by default on Windows that is `C:\Program Files (x86)\Steam\steamapps\common\Counter-Strike Global Offensive\game\csgo\cfg`. You can also find it by opening your Steam library, right-clicking CS2, `Properties...`, `Installed Files`, `Browse...`, and then heading into the `game` directory, then into `csgo`, then `cfg`.
 1. Save `gamestate_integration_drweissbrot_hud.cfg` there.
+1. Open Counter-Strike, go to the Settings, `Video`, and set the `Display Mode` to `Fullscreen Windowed`.
 1. Start CS2 (restart it if you already had it open), and find a match to spectate. You could for example play a demo, or spectate a friend via CSTV.
 1. Now run `cs-hud-server-win.exe` or `cs-hud-server-linux`.
-1. Open http://localhost:31982/hud in your favorite browser, and you should see the HUD.
+1. Download and extract [`cs-hud-overlay-win32-x64.zip`](https://github.com/drweissbrot/cs-hud/releases/latest/download/cs-hud-overlay-win32-x64.zip) on Windows, or [`cs-hud-overlay-linux-x64.tar.gz`](https://github.com/drweissbrot/cs-hud/releases/latest/download/cs-hud-overlay-linux-x64.tar.gz) on Linux.
+1. Run `cs-hud-overlay.exe` on Windows, or `cs-hud-overlay` on Linux.
+1. The HUD should now overlay your screen while spectating.
+
+### Development Setup
+If you want to run from source:
+
+1. Clone this repository
+1. Install dependencies: `npm install`
+1. Start the server: `npm start` (in one terminal)
+1. Start the overlay: `npm run electron` (in another terminal)
 
 There's also the config page available at http://localhost:31982/config, and a separate radar for observing at http://localhost:31982/radar.  
 There are also [some console commands you may want to use](docs/cvars.md).
