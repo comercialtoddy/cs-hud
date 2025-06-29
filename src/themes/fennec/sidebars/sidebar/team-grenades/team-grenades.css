@@ -1,10 +1,14 @@
+/* === TEAM GRENADES COMPONENT - MELHORIAS BÁSICAS ELEGANTES === */
+
 .team-grenades-wrapper {
 	width: var(--sidebar-team-grenades-width);
 	max-height: calc(2.8rem + 0.5rem);
 
 	filter: var(--filter-drop-shadow);
 	overflow: hidden;
-	transition: max-height var(--fade-slow-duration) ease;
+	transition: max-height var(--fade-slow-duration) ease,
+				all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
 }
 
 .team-grenades-wrapper:not(.--active) {
@@ -20,7 +24,13 @@
 	margin-bottom: 0.5rem;
 
 	background: var(--black-40);
-	transition: transform var(--fade-slow-duration) ease;
+	transition: transform var(--fade-slow-duration) ease,
+				all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
+}
+
+.team-grenades:hover {
+	transform: translateY(0%) scale(1.02);
 }
 
 .team-grenades.--right {
@@ -49,7 +59,16 @@
 
 	padding: 0.65rem 1rem;
 	font-size: 1.5rem;
-	transition: opacity var(--fade-default-duration) ease;
+	transition: opacity var(--fade-default-duration) ease,
+				all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.3rem;
+}
+
+.smokegrenade:hover,
+.molotov:hover,
+.flashbang:hover,
+.hegrenade:hover {
+	transform: scale(1.05);
 }
 
 .smokegrenade:not(.--active),
@@ -70,7 +89,9 @@
 .total {
 	display: grid;
 	grid-template-columns: max-content 0fr;
-	transition: grid-template-columns var(--fade-slow-duration) ease;
+	transition: grid-template-columns var(--fade-slow-duration) ease,
+				all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
 }
 
 .total.--label-active {
@@ -91,4 +112,6 @@
 .hegrenade img.label {
 	height: 1.5rem;
 	margin-right: 0.75rem;
+	border-radius: 0.3rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }

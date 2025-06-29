@@ -6,9 +6,85 @@
 
 	padding: 0 0.5rem;
 	font-weight: 700;
+	border-radius: 0.4rem;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	overflow: hidden;
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+}
+
+.name::before {
+	content: '';
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	background: linear-gradient(
+		45deg,
+		rgba(255, 255, 255, 0.1),
+		transparent 30%,
+		transparent 70%,
+		rgba(255, 255, 255, 0.1)
+	);
+	opacity: 0;
+	transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+	z-index: -1;
+	border-radius: 0.4rem;
+}
+
+.name::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: -10%;
+	width: 120%;
+	height: 1px;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.8),
+		transparent
+	);
+	transform: translateY(-50%) scaleX(0);
+	transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.name:hover {
+	transform: translateX(3px) translateY(-1px);
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+	text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+	letter-spacing: 0.5px;
+}
+
+.name:hover::before {
+	opacity: 1;
+	transform: rotate(1deg);
+}
+
+.name:hover::after {
+	transform: translateY(-50%) scaleX(1);
 }
 
 .name.--right {
 	text-align: right;
 	justify-content: flex-end;
+}
+
+.name.--right:hover {
+	transform: translateX(-3px) translateY(-1px);
+}
+
+/* Efeito de digitação para nomes longos */
+.name.--typing {
+	animation: typewriterGlow 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes typewriterGlow {
+	0%, 100% { 
+		text-shadow: 0 0 4px rgba(255, 255, 255, 0.2);
+	}
+	50% { 
+		text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+	}
 }

@@ -4,7 +4,9 @@
 
 	filter: var(--filter-drop-shadow);
 	overflow: hidden;
-	transition: max-height var(--fade-slow-duration) ease;
+	transition: max-height var(--fade-slow-duration) ease,
+				all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
 }
 
 .team-equipment-wrapper:not(.--active) {
@@ -24,7 +26,13 @@
 	padding: 0.5rem 1rem;
 
 	text-align: center;
-	transition: transform var(--fade-slow-duration) ease;
+	transition: transform var(--fade-slow-duration) ease,
+				all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
+}
+
+.team-equipment:hover {
+	transform: translateY(0%) scale(1.02);
 }
 
 .team-equipment:not(.--active) {
@@ -52,12 +60,14 @@
 	font-weight: 700;
 	letter-spacing: 0.125em;
 	text-transform: uppercase;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .loss-bonus .value,
 .team-money .value,
 .equipment-value .value {
 	font-size: 1.75rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .loss-bonus .pips-and-value {
@@ -77,6 +87,8 @@
 	aspect-ratio: 1;
 	border: 0.2rem solid var(--white);
 	margin: 0.3rem;
+	border-radius: 0.3rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .loss-bonus .pips .pip.--filled {

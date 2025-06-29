@@ -4,17 +4,64 @@
 	display: flex;
 	align-items: center;
 	padding-right: 0.5rem;
+	border-radius: 0.4rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.grenades:hover {
+	background: rgba(255, 255, 255, 0.05);
+	transform: translateX(-2px);
 }
 
 .grenades .grenade {
 	margin: 0 0.6rem;
+	border-radius: 0.3rem;
+	transition: all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+	position: relative;
+}
+
+.grenades .grenade:hover {
+	transform: translateY(-2px) scale(1.1);
+}
+
+.grenades .grenade::before {
+	content: '';
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	border-radius: 0.4rem;
+	background: rgba(255, 255, 255, 0.1);
+	opacity: 0;
+	transition: opacity 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+	z-index: -1;
+}
+
+.grenades .grenade:hover::before {
+	opacity: 1;
 }
 
 .grenades .grenade img {
 	height: 1.5rem;
-	transition: opacity var(--fade-fast-duration) ease;
+	border-radius: 0.3rem;
+	transition: opacity var(--fade-fast-duration) cubic-bezier(0.4, 0.0, 0.2, 1),
+	           filter 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.grenades .grenade img:hover {
+	filter: brightness(1.2) drop-shadow(0 0 3px rgba(255, 255, 255, 0.3));
 }
 
 .grenades .grenade img:not(.--active) {
 	opacity: 0.5;
+}
+
+.grenades .grenade img.--active {
+	animation: grenadeActive 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes grenadeActive {
+	0%, 100% { filter: brightness(1); }
+	50% { filter: brightness(1.3); }
 }

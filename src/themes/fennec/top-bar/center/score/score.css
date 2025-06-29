@@ -3,6 +3,11 @@
 
 	font-size: var(--top-bar-score-font-size);
 	font-weight: 700;
+	transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.score:hover {
+	transform: translateY(-1px);
 }
 
 .score.--left::before,
@@ -11,6 +16,7 @@
 	display: block;
 	width: 2rem;
 	height: 100%;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .score .inner {
@@ -21,6 +27,8 @@
 	isolation: isolate;
 	text-align: center;
 	z-index: 1;
+	border-radius: 0.4rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .score.--ct.--left::before,
@@ -41,12 +49,14 @@
 
 .score.--left::before {
 	transform: skewX(20deg) scaleX(2) translateX(-0.05rem);
+	border-radius: 0.4rem 0 0 0.4rem;
 }
 
 .score.--left .inner {
 	padding-left: 0.5rem;
 	padding-right: 1rem;
 	margin-left: -1.5rem;
+	border-radius: 0 0.4rem 0.4rem 0;
 }
 
 .score.--right {
@@ -55,10 +65,12 @@
 
 .score.--right::after {
 	transform: skewX(-20deg) scaleX(2) translateX(0.05rem);
+	border-radius: 0 0.4rem 0.4rem 0;
 }
 
 .score.--right .inner {
 	padding-right: 0.5rem;
 	padding-left: 1rem;
 	margin-right: -1.5rem;
+	border-radius: 0.4rem 0 0 0.4rem;
 }

@@ -1,6 +1,54 @@
 .match-point-rounds-overflow-container {
 	grid-area: match-point-rounds;
 	overflow: hidden;
+	position: relative;
+	border-radius: 0.4rem;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.match-point-rounds-overflow-container::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(
+		135deg,
+		rgba(255, 140, 0, 0.05) 0%,
+		rgba(255, 0, 0, 0.03) 50%,
+		rgba(255, 140, 0, 0.05) 100%
+	);
+	opacity: 0;
+	transition: opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
+}
+
+.match-point-rounds-overflow-container::after {
+	content: '⚠️';
+	position: absolute;
+	top: 50%;
+	right: -40px;
+	transform: translateY(-50%);
+	font-size: 2.5rem;
+	opacity: 0.1;
+	transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+	z-index: 1;
+}
+
+.match-point-rounds-overflow-container:hover {
+	transform: translateY(-2px) scale(1.01);
+	box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
+}
+
+.match-point-rounds-overflow-container:hover::before {
+	opacity: 1;
+}
+
+.match-point-rounds-overflow-container:hover::after {
+	right: -20px;
+	opacity: 0.3;
+	transform: translateY(-50%) rotate(15deg) scale(1.2);
 }
 
 .match-point-rounds {
@@ -16,13 +64,73 @@
 	font-weight: 700;
 	letter-spacing: 0.2em;
 	text-transform: uppercase;
-	transition:
-		clip-path var(--fade-default-duration) ease,
-		transform var(--fade-default-duration) ease;
+	transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+	position: relative;
+	border-radius: 0.4rem;
+	overflow: hidden;
+}
+
+.match-point-rounds::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 140, 0, 0.3),
+		rgba(255, 0, 0, 0.2),
+		rgba(255, 140, 0, 0.3),
+		transparent
+	);
+	transition: left 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.match-point-rounds::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: radial-gradient(
+		ellipse at center,
+		rgba(255, 140, 0, 0.15) 0%,
+		rgba(255, 0, 0, 0.08) 50%,
+		transparent 100%
+	);
+	opacity: 0;
+	transition: opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
+}
+
+.match-point-rounds:hover {
+	letter-spacing: 0.25em;
+	text-shadow: 
+		0 0 8px rgba(255, 140, 0, 0.8),
+		0 0 16px rgba(255, 0, 0, 0.6);
+	transform: scale(1.02);
+}
+
+.match-point-rounds:hover::before {
+	left: 100%;
+}
+
+.match-point-rounds:hover::after {
+	opacity: 1;
 }
 
 .match-point-rounds:not(.--active) {
 	transform: translateY(-100%);
+}
+
+.match-point-rounds.--active {
+	box-shadow: 
+		0 4px 16px rgba(255, 140, 0, 0.5),
+		inset 0 1px 3px rgba(255, 255, 255, 0.2);
+	border: 1px solid rgba(255, 140, 0, 0.4);
 }
 
 .match-point-rounds.--is-multiple-map-series {
@@ -31,4 +139,93 @@
 
 .match-point-rounds.--is-multiple-map-series:not(.--active) {
 	clip-path: polygon(-1% -1%, 101% -1%, calc(101% - 0.85rem) 101%, 0.85rem 101%);
+}
+
+/* Animações especiais para rounds de match point */
+.match-point-rounds.--pressure-building {
+	animation: pressureBuilding 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.match-point-rounds.--critical-timing {
+	animation: criticalTiming 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.match-point-rounds.--championship-determination {
+	animation: championshipDetermination 4s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.match-point-rounds.--overtime-pressure {
+	animation: overtimePressure 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes pressureBuilding {
+	0%, 100% { 
+		background: var(--black-50);
+		filter: brightness(1);
+	}
+	33% { 
+		background: rgba(255, 140, 0, 0.15);
+		filter: brightness(1.3) contrast(1.2);
+	}
+	66% { 
+		background: rgba(255, 0, 0, 0.12);
+		filter: brightness(1.5) contrast(1.4);
+		box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+	}
+}
+
+@keyframes criticalTiming {
+	0%, 100% { 
+		border: 1px solid rgba(255, 140, 0, 0.4);
+		transform: scale(1);
+	}
+	50% { 
+		border: 1px solid rgba(255, 0, 0, 0.8);
+		transform: scale(1.02);
+		box-shadow: 
+			0 0 20px rgba(255, 0, 0, 0.6),
+			inset 0 0 10px rgba(255, 140, 0, 0.4);
+	}
+}
+
+@keyframes championshipDetermination {
+	0%, 100% { 
+		filter: brightness(1) hue-rotate(0deg);
+		box-shadow: 0 0 12px rgba(255, 140, 0, 0.4);
+	}
+	25% { 
+		filter: brightness(1.4) hue-rotate(15deg);
+		box-shadow: 0 0 25px rgba(255, 69, 0, 0.7);
+	}
+	50% { 
+		filter: brightness(1.8) hue-rotate(30deg);
+		box-shadow: 0 0 40px rgba(255, 0, 0, 0.9);
+		transform: scale(1.03);
+	}
+	75% { 
+		filter: brightness(1.5) hue-rotate(20deg);
+		box-shadow: 0 0 30px rgba(255, 100, 0, 0.8);
+	}
+}
+
+@keyframes overtimePressure {
+	0%, 90%, 100% { 
+		background: var(--black-50);
+		filter: brightness(1);
+	}
+	10% { 
+		background: rgba(255, 0, 0, 0.3);
+		filter: brightness(2) saturate(2);
+		transform: scale(1.05);
+	}
+	20% { 
+		background: rgba(255, 140, 0, 0.25);
+		filter: brightness(1.8) saturate(1.8);
+		transform: scale(1.03);
+	}
+	30% { 
+		background: rgba(255, 255, 255, 0.15);
+		filter: brightness(2.2) saturate(0.5);
+		transform: scale(1.02);
+	}
 }

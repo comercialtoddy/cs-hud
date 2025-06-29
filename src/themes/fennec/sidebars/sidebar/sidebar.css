@@ -3,7 +3,9 @@
 	bottom: var(--viewport-margin-bottom);
 	width: var(--sidebar-width);
 
-	transition: transform var(--fade-slow-duration) ease;
+	transition: transform var(--fade-slow-duration) ease,
+				all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.6rem;
 }
 
 .sidebar.--left {
@@ -25,6 +27,8 @@
 img.overlay {
 	display: block;
 	width: var(--sidebar-player-width);
+	border-radius: 0.4rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 img.overlay.--left {

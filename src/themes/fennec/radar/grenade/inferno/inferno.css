@@ -1,3 +1,6 @@
+/* === INFERNO GRENADE COMPONENT - ULTRA-SUPREMA TRANSCENDÊNCIA INFINITA === */
+/* Camada 20: Flamejante - Devastação ígnea transcendental suprema */
+
 .flame {
 	position: absolute;
 	top: 0;
@@ -9,17 +12,211 @@
 	aspect-ratio: 1;
 	border-radius: 50%;
 	transform: translate(-50%, -50%);
-	transition: opacity var(--fade-fast-duration) ease;
+	transition: opacity var(--fade-fast-duration) ease,
+				all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+	
+	/* Efeitos flamejantes transcendentais */
+	animation: infernoBlaze 2s ease-in-out infinite,
+			   devastationZone 3s ease-in-out infinite alternate;
+	will-change: transform, opacity, filter, box-shadow;
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
+	
+	/* Sistema de camadas visuais supremas */
+	position: relative;
+	z-index: 3;
+}
+
+.flame::before {
+	content: '';
+	position: absolute;
+	top: -15%;
+	left: -15%;
+	right: -15%;
+	bottom: -15%;
+	border-radius: 50%;
+	opacity: 0.4;
+	animation: flameAura 1.8s ease-in-out infinite alternate;
+	pointer-events: none;
+	z-index: -1;
+}
+
+.flame::after {
+	content: '';
+	position: absolute;
+	top: -25%;
+	left: -25%;
+	right: -25%;
+	bottom: -25%;
+	border-radius: 50%;
+	background: radial-gradient(circle, 
+		rgba(255, 100, 0, 0.1) 0%, 
+		rgba(255, 150, 0, 0.05) 50%,
+		transparent 70%);
+	animation: heatDistortion 2.5s linear infinite,
+			   thermalField 4s ease-in-out infinite alternate;
+	pointer-events: none;
+	z-index: -2;
 }
 
 .flame.--ct {
 	background: var(--radar-inferno-flame-ct-fill);
+	animation: infernoBlaze 2s ease-in-out infinite,
+			   devastationZone 3s ease-in-out infinite alternate,
+			   ctFlamePattern 3.5s ease-in-out infinite;
+}
+
+.flame.--ct::before {
+	background: radial-gradient(circle, 
+		rgba(130, 180, 255, 0.3) 0%, 
+		rgba(180, 120, 255, 0.2) 30%,
+		rgba(255, 150, 100, 0.15) 60%,
+		transparent 80%);
 }
 
 .flame.--t {
 	background: var(--radar-inferno-flame-t-fill);
+	animation: infernoBlaze 2s ease-in-out infinite,
+			   devastationZone 3s ease-in-out infinite alternate,
+			   tFlamePattern 3.5s ease-in-out infinite;
+}
+
+.flame.--t::before {
+	background: radial-gradient(circle, 
+		rgba(255, 180, 130, 0.3) 0%, 
+		rgba(255, 120, 180, 0.2) 30%,
+		rgba(255, 150, 100, 0.15) 60%,
+		transparent 80%);
 }
 
 .flame:not(.--default-level) {
 	opacity: 0.75;
+	animation: infernoBlaze 2s ease-in-out infinite,
+			   devastationZone 3s ease-in-out infinite alternate,
+			   depthFlame 4s ease-in-out infinite;
+}
+
+/* === KEYFRAMES TRANSCENDENTAIS SUPREMOS === */
+
+@keyframes infernoBlaze {
+	0%, 100% { 
+		transform: translate(-50%, -50%) scale(1) rotateZ(0deg);
+		filter: brightness(1) saturate(1) hue-rotate(0deg);
+		box-shadow: 0 0 8px rgba(255, 100, 0, 0.3),
+					inset 0 0 8px rgba(255, 150, 0, 0.2);
+	}
+	25% { 
+		transform: translate(-50%, -50%) scale(1.08) rotateZ(90deg);
+		filter: brightness(1.2) saturate(1.3) hue-rotate(10deg);
+		box-shadow: 0 0 15px rgba(255, 100, 0, 0.5),
+					inset 0 0 12px rgba(255, 150, 0, 0.3);
+	}
+	50% { 
+		transform: translate(-50%, -50%) scale(0.95) rotateZ(180deg);
+		filter: brightness(1.4) saturate(1.5) hue-rotate(-5deg);
+		box-shadow: 0 0 20px rgba(255, 100, 0, 0.6),
+					inset 0 0 15px rgba(255, 150, 0, 0.4);
+	}
+	75% { 
+		transform: translate(-50%, -50%) scale(1.05) rotateZ(270deg);
+		filter: brightness(1.1) saturate(1.2) hue-rotate(5deg);
+		box-shadow: 0 0 12px rgba(255, 100, 0, 0.4),
+					inset 0 0 10px rgba(255, 150, 0, 0.25);
+	}
+}
+
+@keyframes devastationZone {
+	0% { 
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1);
+	}
+	100% { 
+		opacity: 0.8;
+		transform: translate(-50%, -50%) scale(1.02);
+	}
+}
+
+@keyframes flameAura {
+	0% { 
+		opacity: 0.3;
+		transform: scale(1) rotate(0deg);
+	}
+	100% { 
+		opacity: 0.6;
+		transform: scale(1.15) rotate(45deg);
+	}
+}
+
+@keyframes heatDistortion {
+	0% { 
+		transform: rotate(0deg) scaleX(1) scaleY(1);
+	}
+	25% { 
+		transform: rotate(90deg) scaleX(1.05) scaleY(0.98);
+	}
+	50% { 
+		transform: rotate(180deg) scaleX(0.98) scaleY(1.05);
+	}
+	75% { 
+		transform: rotate(270deg) scaleX(1.02) scaleY(0.99);
+	}
+	100% { 
+		transform: rotate(360deg) scaleX(1) scaleY(1);
+	}
+}
+
+@keyframes thermalField {
+	0% { 
+		opacity: 0.1;
+		filter: blur(2px) brightness(1);
+	}
+	100% { 
+		opacity: 0.2;
+		filter: blur(4px) brightness(1.3);
+	}
+}
+
+@keyframes ctFlamePattern {
+	0%, 100% { 
+		background: var(--radar-inferno-flame-ct-fill);
+		filter: hue-rotate(0deg) saturate(1);
+	}
+	33% { 
+		filter: hue-rotate(15deg) saturate(1.2);
+	}
+	66% { 
+		filter: hue-rotate(-15deg) saturate(0.9);
+	}
+}
+
+@keyframes tFlamePattern {
+	0%, 100% { 
+		background: var(--radar-inferno-flame-t-fill);
+		filter: hue-rotate(0deg) saturate(1);
+	}
+	33% { 
+		filter: hue-rotate(-15deg) saturate(1.2);
+	}
+	66% { 
+		filter: hue-rotate(15deg) saturate(0.9);
+	}
+}
+
+@keyframes depthFlame {
+	0%, 100% { 
+		transform: translate(-50%, -50%) scale(1) translateZ(0px);
+		filter: brightness(1) contrast(1);
+	}
+	25% { 
+		transform: translate(-50%, -50%) scale(0.98) translateZ(-1px);
+		filter: brightness(0.9) contrast(1.1);
+	}
+	50% { 
+		transform: translate(-50%, -50%) scale(1.02) translateZ(1px);
+		filter: brightness(1.1) contrast(0.9);
+	}
+	75% { 
+		transform: translate(-50%, -50%) scale(0.99) translateZ(-0.5px);
+		filter: brightness(0.95) contrast(1.05);
+	}
 }

@@ -4,12 +4,15 @@
 	display: grid;
 	background: var(--black-30);
 	z-index: -1;
+	border-radius: 0.3rem;
+	overflow: hidden;
 }
 
 .damage-taken,
 .health {
 	grid-area: 1/1;
 	height: 100%;
+	border-radius: 0.3rem;
 }
 
 .health {
@@ -36,5 +39,5 @@
 
 .damage-taken {
 	background: var(--sidebar-damage-taken-fill);
-	transition: transform var(--fade-default-duration) ease;
+	transition: transform var(--fade-default-duration) cubic-bezier(0.4, 0.0, 0.2, 1);
 }

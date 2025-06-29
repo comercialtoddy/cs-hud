@@ -1,27 +1,211 @@
 .timeout-wrapper {
 	max-height: calc(2 * var(--top-bar-row-height));
+	position: relative;
+	border-radius: 0.4rem;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	overflow: hidden;
+	background: linear-gradient(135deg, rgba(255, 255, 0, 0.03) 0%, transparent 100%);
+}
+
+.timeout-wrapper::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(
+		45deg,
+		rgba(255, 255, 0, 0.1),
+		transparent 25%,
+		transparent 75%,
+		rgba(255, 255, 0, 0.1)
+	);
+	opacity: 0;
+	transition: opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.timeout-wrapper::after {
+	content: '⏰';
+	position: absolute;
+	top: 50%;
+	right: -45px;
+	transform: translateY(-50%);
+	font-size: 3rem;
+	opacity: 0.1;
+	transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+	z-index: 1;
+}
+
+.timeout-wrapper:hover {
+	transform: translateY(-2px) scale(1.02);
+	background: linear-gradient(135deg, rgba(255, 255, 0, 0.1) 0%, rgba(255, 255, 0, 0.03) 100%);
+	box-shadow: 0 6px 24px rgba(255, 255, 0, 0.4);
+}
+
+.timeout-wrapper:hover::before {
+	opacity: 1;
+}
+
+.timeout-wrapper:hover::after {
+	right: -25px;
+	opacity: 0.3;
+	transform: translateY(-50%) rotate(15deg) scale(1.2);
 }
 
 .timeout {
 	height: calc(2 * var(--top-bar-row-height));
+	position: relative;
+	border-radius: 0.4rem;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	overflow: hidden;
+}
+
+.timeout::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 0, 0.2),
+		transparent
+	);
+	transition: left 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.timeout:hover::before {
+	left: 100%;
 }
 
 .timeout .inner {
 	flex-direction: column;
 	justify-content: space-evenly;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.timeout .inner::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: radial-gradient(
+		ellipse at center,
+		rgba(255, 255, 0, 0.1) 0%,
+		transparent 70%
+	);
+	opacity: 0;
+	transition: opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
+}
+
+.timeout:hover .inner::before {
+	opacity: 1;
 }
 
 .timeout .label {
 	font-size: 2.25rem;
 	font-weight: 700;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.timeout .label::before {
+	content: '';
+	position: absolute;
+	bottom: -3px;
+	left: 0;
+	width: 0;
+	height: 3px;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 0, 0.6),
+		rgba(255, 255, 0, 0.8),
+		rgba(255, 255, 0, 0.6)
+	);
+	transition: width 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.timeout:hover .label::before {
+	width: 100%;
+}
+
+.timeout:hover .label {
+	text-shadow: 
+		0 0 8px rgba(255, 255, 0, 0.6),
+		0 0 16px rgba(255, 255, 0, 0.3);
+	transform: scale(1.05);
 }
 
 .timeout .remaining {
 	font-size: 1.75rem;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.timeout .remaining::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	background: radial-gradient(
+		circle,
+		rgba(255, 255, 0, 0.3) 0%,
+		transparent 70%
+	);
+	transform: translate(-50%, -50%);
+	transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 50%;
+}
+
+.timeout:hover .remaining {
+	transform: scale(1.1);
+	font-weight: 700;
+	text-shadow: 
+		0 0 6px rgba(255, 255, 0, 0.5),
+		0 0 12px rgba(255, 255, 0, 0.2);
+}
+
+.timeout:hover .remaining::before {
+	width: 50px;
+	height: 50px;
 }
 
 .timeout .progress-bar-background {
 	margin-top: 0.5rem;
+	position: relative;
+	border-radius: 0.3rem;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	overflow: hidden;
+}
+
+.timeout .progress-bar-background::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 0, 0.2),
+		rgba(255, 215, 0, 0.3),
+		rgba(255, 255, 0, 0.2)
+	);
+	opacity: 0;
+	transition: opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.timeout:hover .progress-bar-background::before {
+	opacity: 1;
 }
 
 .timeout.--left .inner {
@@ -30,4 +214,73 @@
 
 .timeout.--right .inner {
 	padding: 0.5rem 2.5rem 0.5rem 1rem;
+}
+
+/* Animações especiais para diferentes estados de timeout */
+.timeout.--critical {
+	animation: criticalTimeout 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.timeout.--strategic {
+	animation: strategicTimeout 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.timeout.--emergency {
+	animation: emergencyTimeout 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes criticalTimeout {
+	0%, 100% { 
+		background: rgba(255, 255, 0, 0.1);
+		box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+	}
+	50% { 
+		background: rgba(255, 0, 0, 0.2);
+		box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+		transform: scale(1.03);
+	}
+}
+
+@keyframes strategicTimeout {
+	0%, 100% { 
+		filter: brightness(1);
+		box-shadow: 0 0 8px rgba(255, 255, 0, 0.3);
+	}
+	33% { 
+		filter: brightness(1.2) hue-rotate(30deg);
+		box-shadow: 0 0 16px rgba(255, 215, 0, 0.5);
+	}
+	66% { 
+		filter: brightness(1.4) hue-rotate(60deg);
+		box-shadow: 0 0 20px rgba(255, 140, 0, 0.6);
+	}
+}
+
+@keyframes emergencyTimeout {
+	0%, 100% { 
+		background: rgba(255, 255, 0, 0.05);
+		transform: scale(1);
+	}
+	50% { 
+		background: rgba(255, 0, 0, 0.3);
+		transform: scale(1.05);
+		filter: brightness(1.5) contrast(1.3);
+	}
+}
+
+/* Efeito especial para último timeout */
+.timeout.--last-timeout {
+	animation: lastTimeout 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes lastTimeout {
+	0%, 100% { 
+		border: 2px solid rgba(255, 0, 0, 0.5);
+		box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+	}
+	50% { 
+		border: 2px solid rgba(255, 0, 0, 1);
+		box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+		filter: brightness(1.3);
+	}
 }

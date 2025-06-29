@@ -1,22 +1,134 @@
+/* === GRENADE PROJECTILE COMPONENT - ULTRA-SUPREMA TRANSCENDÊNCIA INFINITA === */
+/* Camada 21: Balística - Trajetória balística transcendental suprema */
+
 .projectile {
 	position: absolute;
 	top: 0;
 	left: 0;
 
 	height: 1rem;
+	border-radius: 0.3rem;
 
 	transform: translate(-50%, -50%);
-	transition: opacity var(--fade-fast-duration) ease;
+	transition: opacity var(--fade-fast-duration) ease,
+				all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+	
+	/* Efeitos balísticos transcendentais */
+	animation: ballisticTrajectory 1.5s ease-in-out infinite,
+			   projectilePhysics 2s linear infinite;
+	will-change: transform, opacity, filter;
+	transform-style: preserve-3d;
+	backface-visibility: hidden;
+	z-index: 2;
+}
+
+.projectile::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 200%;
+	height: 200%;
+	border-radius: 50%;
+	background: radial-gradient(circle, 
+		rgba(255, 255, 100, 0.1) 0%, 
+		transparent 60%);
+	transform: translate(-50%, -50%);
+	animation: explosiveTrail 1.8s linear infinite;
+	pointer-events: none;
+	z-index: -1;
 }
 
 .projectile.--ct {
-	filter: url(#counter-terrorists-fill-from-white-filter);
+	filter: url(#counter-terrorists-fill-from-white-filter) 
+			drop-shadow(0 0 3px rgba(130, 180, 255, 0.3));
+	animation: ballisticTrajectory 1.5s ease-in-out infinite,
+			   projectilePhysics 2s linear infinite,
+			   ctProjectile 2.5s ease-in-out infinite;
 }
 
 .projectile.--t {
-	filter: url(#terrorists-fill-from-white-filter);
+	filter: url(#terrorists-fill-from-white-filter) 
+			drop-shadow(0 0 3px rgba(255, 180, 130, 0.3));
+	animation: ballisticTrajectory 1.5s ease-in-out infinite,
+			   projectilePhysics 2s linear infinite,
+			   tProjectile 2.5s ease-in-out infinite;
 }
 
 .projectile:not(.--default-level) {
 	opacity: 0.75;
+	animation: ballisticTrajectory 1.5s ease-in-out infinite,
+			   projectilePhysics 2s linear infinite,
+			   depthProjectile 3s ease-in-out infinite alternate;
+}
+
+/* === KEYFRAMES TRANSCENDENTAIS SUPREMOS === */
+
+@keyframes ballisticTrajectory {
+	0%, 100% { 
+		transform: translate(-50%, -50%) scale(1) rotateZ(0deg);
+		filter: brightness(1);
+	}
+	50% { 
+		transform: translate(-50%, -50%) scale(1.05) rotateZ(180deg);
+		filter: brightness(1.2);
+	}
+}
+
+@keyframes projectilePhysics {
+	0% { 
+		box-shadow: 0 0 3px rgba(255, 255, 100, 0.2);
+	}
+	50% { 
+		box-shadow: 0 0 6px rgba(255, 255, 100, 0.4);
+	}
+	100% { 
+		box-shadow: 0 0 3px rgba(255, 255, 100, 0.2);
+	}
+}
+
+@keyframes explosiveTrail {
+	0% { 
+		opacity: 0.1;
+		transform: translate(-50%, -50%) scale(1);
+	}
+	50% { 
+		opacity: 0.2;
+		transform: translate(-50%, -50%) scale(1.3);
+	}
+	100% { 
+		opacity: 0.05;
+		transform: translate(-50%, -50%) scale(1.5);
+	}
+}
+
+@keyframes ctProjectile {
+	0%, 100% { 
+		filter: url(#counter-terrorists-fill-from-white-filter) 
+				drop-shadow(0 0 3px rgba(130, 180, 255, 0.3)) hue-rotate(0deg);
+	}
+	50% { 
+		filter: url(#counter-terrorists-fill-from-white-filter) 
+				drop-shadow(0 0 6px rgba(130, 180, 255, 0.5)) hue-rotate(10deg);
+	}
+}
+
+@keyframes tProjectile {
+	0%, 100% { 
+		filter: url(#terrorists-fill-from-white-filter) 
+				drop-shadow(0 0 3px rgba(255, 180, 130, 0.3)) hue-rotate(0deg);
+	}
+	50% { 
+		filter: url(#terrorists-fill-from-white-filter) 
+				drop-shadow(0 0 6px rgba(255, 180, 130, 0.5)) hue-rotate(-10deg);
+	}
+}
+
+@keyframes depthProjectile {
+	0% { 
+		transform: translate(-50%, -50%) scale(1) translateZ(0px);
+	}
+	100% { 
+		transform: translate(-50%, -50%) scale(0.9) translateZ(-1px);
+	}
 }

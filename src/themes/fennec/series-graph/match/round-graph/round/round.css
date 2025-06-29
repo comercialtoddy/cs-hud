@@ -1,35 +1,214 @@
 .round {
 	flex: 1;
+	border-radius: 0.3rem;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	overflow: hidden;
+}
+
+.round::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(
+		135deg,
+		rgba(255, 255, 255, 0.02) 0%,
+		transparent 50%,
+		rgba(255, 255, 255, 0.02) 100%
+	);
+	opacity: 0;
+	transition: opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.round::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.1),
+		transparent
+	);
+	transition: left 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.round:hover {
+	transform: translateY(-1px) scale(1.02);
+	box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
+}
+
+.round:hover::before {
+	opacity: 1;
+}
+
+.round:hover::after {
+	left: 100%;
 }
 
 .round.--current {
 	background: var(--white-10);
+	position: relative;
+	border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.round.--current::before {
+	content: '';
+	position: absolute;
+	top: -1px;
+	left: -1px;
+	right: -1px;
+	bottom: -1px;
+	background: linear-gradient(
+		45deg,
+		rgba(255, 255, 255, 0.3),
+		transparent 30%,
+		transparent 70%,
+		rgba(255, 255, 255, 0.3)
+	);
+	border-radius: 0.3rem;
+	animation: currentRoundGlow 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+	z-index: -1;
 }
 
 .round.--last-of-half {
 	border-right: 0.1rem solid var(--white);
+	position: relative;
+}
+
+.round.--last-of-half::after {
+	content: '|';
+	position: absolute;
+	top: 50%;
+	right: -1px;
+	transform: translateY(-50%);
+	color: var(--white);
+	font-size: 1.5rem;
+	font-weight: 900;
+	text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+	animation: halfDivider 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 }
 
 .round-number {
 	padding: 0.2rem 0;
 	border-bottom: 0.2rem solid var(--white);
 	font-size: 1.5rem;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.round-number::before {
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 0.5),
+		rgba(255, 255, 255, 0.8),
+		rgba(255, 255, 255, 0.5)
+	);
+	transition: width 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.round:hover .round-number::before {
+	width: 100%;
 }
 
 .round-number.--ct {
 	border-bottom-color: var(--counter-terrorists-border);
 	color: var(--counter-terrorists-text);
+	position: relative;
+}
+
+.round-number.--ct::after {
+	content: '';
+	position: absolute;
+	bottom: -4px;
+	left: 0;
+	right: 0;
+	height: 4px;
+	background: radial-gradient(
+		ellipse at center,
+		var(--counter-terrorists-border) 0%,
+		transparent 70%
+	);
+	opacity: 0;
+	transition: opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.round:hover .round-number.--ct::after {
+	opacity: 1;
 }
 
 .round-number.--t {
 	border-bottom-color: var(--terrorists-border);
 	color: var(--terrorists-text);
+	position: relative;
+}
+
+.round-number.--t::after {
+	content: '';
+	position: absolute;
+	bottom: -4px;
+	left: 0;
+	right: 0;
+	height: 4px;
+	background: radial-gradient(
+		ellipse at center,
+		var(--terrorists-border) 0%,
+		transparent 70%
+	);
+	opacity: 0;
+	transition: opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.round:hover .round-number.--t::after {
+	opacity: 1;
 }
 
 .reason img {
 	display: block;
 	height: 2rem;
 	margin: 0.75rem auto;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+	position: relative;
+}
+
+.reason img::before {
+	content: '';
+	position: absolute;
+	top: -10%;
+	left: -10%;
+	right: -10%;
+	bottom: -10%;
+	background: radial-gradient(
+		circle,
+		rgba(255, 255, 255, 0.2) 0%,
+		transparent 70%
+	);
+	opacity: 0;
+	transition: opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 50%;
+	z-index: -1;
+}
+
+.round:hover .reason img {
+	transform: scale(1.1) rotate(5deg);
+	filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.2));
+}
+
+.round:hover .reason img::before {
+	opacity: 1;
 }
 
 .reason.--ct {
@@ -38,4 +217,93 @@
 
 .reason.--t {
 	filter: url(#terrorists-fill-from-white-filter);
+}
+
+/* Animações especiais para rounds */
+.round.--clutch {
+	animation: clutchRound 2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.round.--ace-round {
+	animation: aceRound 3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.round.--eco-win {
+	animation: ecoWin 2.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+@keyframes currentRoundGlow {
+	0%, 100% { 
+		opacity: 0.3;
+		transform: scale(1);
+	}
+	50% { 
+		opacity: 1;
+		transform: scale(1.02);
+	}
+}
+
+@keyframes halfDivider {
+	0%, 100% { 
+		text-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
+		transform: translateY(-50%) scale(1);
+	}
+	50% { 
+		text-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+		transform: translateY(-50%) scale(1.2);
+	}
+}
+
+@keyframes clutchRound {
+	0%, 100% { 
+		background: var(--white-10);
+		transform: scale(1);
+	}
+	25% { 
+		background: rgba(255, 215, 0, 0.2);
+		transform: scale(1.05);
+	}
+	50% { 
+		background: rgba(255, 215, 0, 0.3);
+		transform: scale(1.1);
+	}
+	75% { 
+		background: rgba(255, 215, 0, 0.2);
+		transform: scale(1.05);
+	}
+}
+
+@keyframes aceRound {
+	0%, 100% { 
+		background: var(--white-10);
+		filter: brightness(1);
+	}
+	20% { 
+		background: rgba(255, 0, 255, 0.15);
+		filter: brightness(1.3) hue-rotate(60deg);
+	}
+	40% { 
+		background: rgba(0, 255, 255, 0.2);
+		filter: brightness(1.6) hue-rotate(120deg);
+	}
+	60% { 
+		background: rgba(255, 255, 0, 0.15);
+		filter: brightness(1.3) hue-rotate(180deg);
+	}
+	80% { 
+		background: rgba(255, 0, 255, 0.1);
+		filter: brightness(1.1) hue-rotate(240deg);
+	}
+}
+
+@keyframes ecoWin {
+	0%, 100% { 
+		background: var(--white-10);
+		transform: scale(1);
+	}
+	50% { 
+		background: rgba(0, 255, 0, 0.2);
+		transform: scale(1.08);
+		filter: brightness(1.4);
+	}
 }

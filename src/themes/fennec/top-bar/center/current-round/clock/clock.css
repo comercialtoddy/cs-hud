@@ -2,10 +2,14 @@ img.paused-icon,
 img.planted-bomb-icon {
 	height: 2rem;
 	margin: 0.125rem 0;
+	border-radius: 0.3rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .clock {
 	font-size: 2.25rem;
+	border-radius: 0.3rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .clock.--red {
@@ -15,6 +19,8 @@ img.planted-bomb-icon {
 img.bombsite-icon {
 	height: 1.75rem;
 	margin-left: 0.75rem;
+	border-radius: 0.3rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .bomb {
@@ -23,4 +29,6 @@ img.bombsite-icon {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	border-radius: 0.4rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }

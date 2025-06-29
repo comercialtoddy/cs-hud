@@ -1,5 +1,7 @@
 .player-wrapper {
 	display: grid;
+	border-radius: 0.6rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .player-wrapper.--left {
@@ -22,6 +24,12 @@
 	filter: var(--filter-drop-shadow);
 	font-size: 1.8rem;
 	isolation: isolate;
+	border-radius: 0.6rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.player:hover {
+	transform: scale(1.01);
 }
 
 .player.--left {

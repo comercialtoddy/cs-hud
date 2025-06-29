@@ -1,9 +1,13 @@
+/* === DEAD PLAYER COMPONENT - MELHORIAS BÁSICAS ELEGANTES === */
+
 .dead-player {
 	position: absolute;
 	top: 0;
 	left: 0;
 
 	transform: translate(-50%, -50%);
+	border-radius: 0.4rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .dead-player:not(.--default-level) {
@@ -13,6 +17,8 @@
 img {
 	display: block;
 	height: 0.8rem;
+	border-radius: 0.3rem;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 img.--ct {

@@ -1,8 +1,161 @@
 .bomb-timer-wrapper {
 	max-height: var(--top-bar-half-row-height);
+	position: relative;
+	overflow: hidden;
+	border-radius: 0.4rem;
+	background: linear-gradient(135deg, rgba(255, 51, 51, 0.05) 0%, transparent 100%);
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.bomb-timer-wrapper::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 51, 51, 0.3),
+		transparent
+	);
+	transition: left 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.bomb-timer-wrapper::after {
+	content: '💣';
+	position: absolute;
+	top: 50%;
+	right: -40px;
+	transform: translateY(-50%);
+	font-size: 2.5rem;
+	color: rgba(255, 51, 51, 0.1);
+	transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+	z-index: -1;
+}
+
+.bomb-timer-wrapper:hover {
+	transform: translateY(-1px) scale(1.02);
+	background: linear-gradient(135deg, rgba(255, 51, 51, 0.15) 0%, rgba(255, 51, 51, 0.05) 100%);
+	box-shadow: 
+		0 4px 20px rgba(255, 51, 51, 0.4),
+		inset 0 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+.bomb-timer-wrapper:hover::before {
+	left: 100%;
+}
+
+.bomb-timer-wrapper:hover::after {
+	right: -20px;
+	color: rgba(255, 51, 51, 0.4);
+	transform: translateY(-50%) rotate(10deg) scale(1.2);
 }
 
 .bomb-timer {
 	height: var(--top-bar-half-row-height);
 	padding: 0 1.75rem;
+	position: relative;
+	border-radius: 0.4rem;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	background: rgba(255, 51, 51, 0.02);
+	overflow: hidden;
+}
+
+.bomb-timer::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: radial-gradient(
+		circle at center,
+		rgba(255, 51, 51, 0.1) 0%,
+		transparent 70%
+	);
+	opacity: 0;
+	transition: opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.bomb-timer::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 51, 51, 0.8),
+		transparent
+	);
+	transform: scaleX(0);
+	transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.bomb-timer:hover::before {
+	opacity: 1;
+}
+
+.bomb-timer:hover::after {
+	transform: scaleX(1);
+}
+
+/* Animação de perigo crítico */
+.bomb-timer.--critical {
+	animation: bombCritical 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes bombCritical {
+	0%, 100% { 
+		background: rgba(255, 51, 51, 0.1);
+		box-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+		transform: scale(1);
+	}
+	50% { 
+		background: rgba(255, 51, 51, 0.3);
+		box-shadow: 0 0 25px rgba(255, 51, 51, 0.9);
+		transform: scale(1.05);
+	}
+}
+
+/* Animação de contagem regressiva */
+.bomb-timer.--countdown {
+	animation: bombCountdown 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes bombCountdown {
+	0% { 
+		filter: brightness(1);
+		text-shadow: 0 0 4px rgba(255, 51, 51, 0.3);
+	}
+	50% { 
+		filter: brightness(1.5);
+		text-shadow: 0 0 12px rgba(255, 51, 51, 0.8);
+	}
+	100% { 
+		filter: brightness(1);
+		text-shadow: 0 0 4px rgba(255, 51, 51, 0.3);
+	}
+}
+
+/* Efeito de explosão iminente */
+.bomb-timer.--imminent {
+	animation: bombImminent 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes bombImminent {
+	0%, 100% { 
+		background: rgba(255, 0, 0, 0.2);
+		transform: scale(1);
+		filter: brightness(1);
+	}
+	50% { 
+		background: rgba(255, 0, 0, 0.5);
+		transform: scale(1.1);
+		filter: brightness(2);
+	}
 }

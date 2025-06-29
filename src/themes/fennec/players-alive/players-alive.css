@@ -13,6 +13,13 @@
 	box-shadow: var(--box-shadow);
 	font-weight: 700;
 	text-transform: uppercase;
+	border-radius: 0.6rem;
+	overflow: hidden;
+	transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.players-alive:hover {
+	transform: translateY(-2px);
 }
 
 .title {
@@ -21,6 +28,7 @@
 
 	font-size: 1.25rem;
 	letter-spacing: 0.125em;
+	transition: background-color 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .team,
@@ -31,6 +39,7 @@
 	aspect-ratio: 1;
 	padding: 0.5rem;
 	min-width: calc(1rem + 1ch);
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .team {
@@ -43,6 +52,11 @@
 
 .team.--t {
 	background: var(--terrorists-fill);
+}
+
+.team:hover {
+	transform: scale(1.05);
+	filter: brightness(1.1);
 }
 
 .vs {

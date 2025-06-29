@@ -3,14 +3,16 @@
 	grid-template-rows: 1fr;
 
 	overflow: visible clip;
+	border-radius: 0.6rem;
 	transition:
-		max-height var(--fade-default-duration) ease,
-		transform var(--fade-default-duration) ease;
+		max-height var(--fade-default-duration) cubic-bezier(0.4, 0.0, 0.2, 1),
+		transform var(--fade-default-duration) cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .top-bar-team-panel-wrapper::before {
 	content: '';
 	display: block;
+	border-radius: 0.6rem 0 0 0.6rem;
 }
 
 .top-bar-team-panel-wrapper.--ct::before {
@@ -31,6 +33,7 @@
 
 .top-bar-team-panel-wrapper.--right::before {
 	grid-area: 1/2;
+	border-radius: 0 0.6rem 0.6rem 0;
 }
 
 .top-bar-team-panel-wrapper .inner {
@@ -38,12 +41,23 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .top-bar-team-panel {
 	display: flex;
 	height: 100%;
 	background: var(--black-50);
+	border-radius: 0 0.6rem 0.6rem 0;
+	overflow: hidden;
+}
+
+.top-bar-team-panel.--left {
+	border-radius: 0 0.6rem 0.6rem 0;
+}
+
+.top-bar-team-panel.--right {
+	border-radius: 0.6rem 0 0 0.6rem;
 }
 
 .top-bar-team-panel.--left .inner {
@@ -54,10 +68,18 @@
 	transform: skewX(20deg);
 }
 
+.top-bar-team-panel:hover .inner {
+	transform: skewX(-20deg) scale(1.02);
+}
+
+.top-bar-team-panel.--right:hover .inner {
+	transform: skewX(20deg) scale(1.02);
+}
+
 .top-bar-team-panel-slide-enter-active .top-bar-team-panel,
 .top-bar-team-panel-slide-leave-active .top-bar-team-panel {
 	transform-origin: top;
-	transition: transform var(--fade-default-duration) ease;
+	transition: transform var(--fade-default-duration) cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .top-bar-team-panel-slide-enter-from,

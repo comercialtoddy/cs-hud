@@ -1,5 +1,56 @@
 .match-point-wrapper {
 	max-height: var(--top-bar-row-height);
+	position: relative;
+	border-radius: 0.4rem;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	overflow: hidden;
+	background: linear-gradient(135deg, rgba(255, 0, 0, 0.05) 0%, transparent 100%);
+}
+
+.match-point-wrapper::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(
+		45deg,
+		rgba(255, 0, 0, 0.15),
+		rgba(255, 215, 0, 0.1),
+		rgba(255, 0, 0, 0.15)
+	);
+	opacity: 0;
+	transition: opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
+}
+
+.match-point-wrapper::after {
+	content: '⚔️';
+	position: absolute;
+	top: 50%;
+	right: -40px;
+	transform: translateY(-50%);
+	font-size: 2.5rem;
+	opacity: 0.1;
+	transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+	z-index: 1;
+}
+
+.match-point-wrapper:hover {
+	transform: translateY(-3px) scale(1.02);
+	background: linear-gradient(135deg, rgba(255, 0, 0, 0.15) 0%, rgba(255, 215, 0, 0.08) 100%);
+	box-shadow: 0 8px 32px rgba(255, 0, 0, 0.5);
+}
+
+.match-point-wrapper:hover::before {
+	opacity: 1;
+}
+
+.match-point-wrapper:hover::after {
+	right: -20px;
+	opacity: 0.4;
+	transform: translateY(-50%) rotate(25deg) scale(1.3);
 }
 
 .match-point {
@@ -9,12 +60,172 @@
 	letter-spacing: 0.5em;
 	text-transform: uppercase;
 	font-size: 2.25rem;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
+	overflow: hidden;
+}
+
+.match-point::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.4),
+		rgba(255, 215, 0, 0.3),
+		rgba(255, 255, 255, 0.4),
+		transparent
+	);
+	transition: left 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.match-point::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: radial-gradient(
+		ellipse at center,
+		rgba(255, 215, 0, 0.2) 0%,
+		rgba(255, 0, 0, 0.1) 50%,
+		transparent 100%
+	);
+	opacity: 0;
+	transition: opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
+}
+
+.match-point:hover {
+	letter-spacing: 0.6em;
+	text-shadow: 
+		0 0 12px rgba(255, 215, 0, 0.8),
+		0 0 24px rgba(255, 0, 0, 0.6);
+	transform: scale(1.03);
+}
+
+.match-point:hover::before {
+	left: 100%;
+}
+
+.match-point:hover::after {
+	opacity: 1;
+}
+
+.match-point .inner {
+	position: relative;
+	z-index: 2;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.match-point:hover .inner {
+	transform: scale(1.05);
 }
 
 .match-point.--ct {
 	background: var(--counter-terrorists-fill-85);
+	position: relative;
+}
+
+.match-point.--ct::before {
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(0, 150, 255, 0.4),
+		rgba(255, 215, 0, 0.3),
+		rgba(0, 150, 255, 0.4),
+		transparent
+	);
+}
+
+.match-point.--ct:hover {
+	text-shadow: 
+		0 0 12px rgba(0, 150, 255, 0.8),
+		0 0 24px rgba(255, 215, 0, 0.6);
 }
 
 .match-point.--t {
 	background: var(--terrorists-fill-85);
+	position: relative;
+}
+
+.match-point.--t::before {
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 150, 0, 0.4),
+		rgba(255, 215, 0, 0.3),
+		rgba(255, 150, 0, 0.4),
+		transparent
+	);
+}
+
+.match-point.--t:hover {
+	text-shadow: 
+		0 0 12px rgba(255, 150, 0, 0.8),
+		0 0 24px rgba(255, 215, 0, 0.6);
+}
+
+/* Animações especiais para match point */
+.match-point.--final-pressure {
+	animation: finalPressure 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.match-point.--decisive-moment {
+	animation: decisiveMoment 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.match-point.--championship-climax {
+	animation: championshipClimax 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes finalPressure {
+	0%, 100% { 
+		box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+		filter: brightness(1);
+	}
+	50% { 
+		box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+		filter: brightness(1.5) contrast(1.3);
+		transform: scale(1.02);
+	}
+}
+
+@keyframes decisiveMoment {
+	0%, 100% { 
+		border: 2px solid rgba(255, 215, 0, 0.5);
+		background: var(--counter-terrorists-fill-85);
+	}
+	50% { 
+		border: 2px solid rgba(255, 215, 0, 1);
+		background: rgba(255, 215, 0, 0.2);
+		transform: scale(1.03);
+		filter: brightness(1.8);
+	}
+}
+
+@keyframes championshipClimax {
+	0%, 100% { 
+		filter: brightness(1) hue-rotate(0deg);
+		box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+	}
+	25% { 
+		filter: brightness(1.4) hue-rotate(15deg);
+		box-shadow: 0 0 35px rgba(255, 140, 0, 0.7);
+	}
+	50% { 
+		filter: brightness(1.8) hue-rotate(30deg);
+		box-shadow: 0 0 50px rgba(255, 215, 0, 1);
+		transform: scale(1.05);
+	}
+	75% { 
+		filter: brightness(1.4) hue-rotate(15deg);
+		box-shadow: 0 0 35px rgba(255, 165, 0, 0.7);
+	}
 }

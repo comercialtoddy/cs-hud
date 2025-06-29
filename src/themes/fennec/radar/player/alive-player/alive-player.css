@@ -9,15 +9,27 @@
 
 	aspect-ratio: 1;
 	transform: translate(-50%, -50%);
-	transition: opacity var(--fade-fast-duration) ease;
+	transition: opacity var(--fade-fast-duration) cubic-bezier(0.4, 0.0, 0.2, 1),
+	           transform 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.alive-player:hover {
+	transform: translate(-50%, -50%) scale(1.1);
 }
 
 .alive-player.--focused {
 	filter: drop-shadow(0 0 0.3rem var(--white-40));
+	animation: focusedPulse 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes focusedPulse {
+	0%, 100% { filter: drop-shadow(0 0 0.3rem var(--white-40)); }
+	50% { filter: drop-shadow(0 0 0.6rem var(--white-60)); }
 }
 
 .alive-player:not(.--default-level) {
 	opacity: 0.75;
+	transition: opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .slot,
@@ -37,11 +49,23 @@
 
 	font-size: 1.25rem;
 	z-index: 1;
+	border-radius: 50%;
+	transition: all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.slot:hover {
+	background: rgba(255, 255, 255, 0.1);
+	transform: scale(1.1);
 }
 
 .circle-and-arrow {
 	position: relative;
 	transform-origin: center;
+	transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.circle-and-arrow:hover {
+	transform: rotate(5deg);
 }
 
 .circle-and-arrow .circle {
@@ -53,6 +77,12 @@
 	box-sizing: border-box;
 	isolation: isolate;
 	z-index: 1;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.circle-and-arrow .circle:hover {
+	border-width: 0.15rem;
+	box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
 }
 
 .circle-and-arrow .circle.--ct {
@@ -65,6 +95,12 @@
 
 .circle-and-arrow .circle.--has-bomb {
 	background: var(--radar-player-carrying-bomb-fill);
+	animation: bombCarrier 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes bombCarrier {
+	0%, 100% { box-shadow: 0 0 2px var(--red); }
+	50% { box-shadow: 0 0 6px var(--red); }
 }
 
 .circle-and-arrow .arrow {
@@ -82,4 +118,11 @@
 	border-right: 0.5rem solid transparent;
 	transform: translateY(-70%);
 	z-index: -1;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.circle-and-arrow:hover .arrow {
+	border-bottom-width: 0.8rem;
+	border-left-width: 0.6rem;
+	border-right-width: 0.6rem;
 }

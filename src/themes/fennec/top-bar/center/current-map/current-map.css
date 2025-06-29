@@ -11,4 +11,165 @@
 	font-weight: 700;
 	letter-spacing: 0.2em;
 	text-transform: uppercase;
+	border-radius: 0.4rem;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	overflow: hidden;
+}
+
+.current-map::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.2),
+		transparent
+	);
+	transition: left 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.current-map::after {
+	content: '🗺️';
+	position: absolute;
+	top: 50%;
+	left: -40px;
+	transform: translateY(-50%);
+	font-size: 2.5rem;
+	opacity: 0.1;
+	transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+	z-index: -1;
+}
+
+.current-map:hover {
+	transform: translateY(-1px) scale(1.02);
+	letter-spacing: 0.25em;
+	text-shadow: 
+		0 0 8px rgba(0, 0, 0, 0.3),
+		0 0 16px rgba(255, 255, 255, 0.2);
+	box-shadow: 
+		0 4px 20px rgba(0, 0, 0, 0.2),
+		inset 0 1px 3px rgba(255, 255, 255, 0.3);
+}
+
+.current-map:hover::before {
+	left: 100%;
+}
+
+.current-map:hover::after {
+	left: -20px;
+	opacity: 0.3;
+	transform: translateY(-50%) rotate(10deg) scale(1.2);
+}
+
+/* Efeito de mapa ativo com scanner tático */
+.current-map.--active {
+	position: relative;
+}
+
+.current-map.--active::before {
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(0, 255, 0, 0.3),
+		transparent
+	);
+	animation: tacticalScan 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.current-map.--competitive {
+	background: linear-gradient(
+		135deg,
+		var(--top-bar-maps-fill) 0%,
+		rgba(255, 215, 0, 0.1) 100%
+	);
+}
+
+.current-map.--competitive::after {
+	content: '🏆';
+	color: rgba(255, 215, 0, 0.2);
+}
+
+.current-map.--casual {
+	background: linear-gradient(
+		135deg,
+		var(--top-bar-maps-fill) 0%,
+		rgba(0, 255, 255, 0.1) 100%
+	);
+}
+
+.current-map.--casual::after {
+	content: '🎮';
+	color: rgba(0, 255, 255, 0.2);
+}
+
+/* Animações específicas de mapa */
+.current-map.--dust2 {
+	animation: desertHeat 4s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.current-map.--mirage {
+	animation: mirageShimmer 3.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.current-map.--inferno {
+	animation: infernoFlames 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.current-map.--cache {
+	animation: nuclearGlow 4.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes tacticalScan {
+	0% { left: -100%; }
+	50% { left: 0%; }
+	100% { left: 100%; }
+}
+
+@keyframes desertHeat {
+	0%, 100% { 
+		filter: hue-rotate(0deg) brightness(1);
+		text-shadow: 0 0 8px rgba(255, 140, 0, 0.3);
+	}
+	50% { 
+		filter: hue-rotate(10deg) brightness(1.1);
+		text-shadow: 0 0 16px rgba(255, 140, 0, 0.6);
+	}
+}
+
+@keyframes mirageShimmer {
+	0%, 100% { 
+		filter: brightness(1);
+		text-shadow: 0 0 8px rgba(0, 191, 255, 0.3);
+	}
+	50% { 
+		filter: brightness(1.15);
+		text-shadow: 0 0 16px rgba(0, 191, 255, 0.6);
+	}
+}
+
+@keyframes infernoFlames {
+	0%, 100% { 
+		filter: brightness(1);
+		text-shadow: 0 0 8px rgba(255, 69, 0, 0.4);
+	}
+	50% { 
+		filter: brightness(1.2);
+		text-shadow: 0 0 16px rgba(255, 69, 0, 0.7);
+	}
+}
+
+@keyframes nuclearGlow {
+	0%, 100% { 
+		filter: brightness(1);
+		text-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
+	}
+	50% { 
+		filter: brightness(1.1);
+		text-shadow: 0 0 16px rgba(0, 255, 0, 0.6);
+	}
 }

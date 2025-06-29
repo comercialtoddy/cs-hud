@@ -3,6 +3,7 @@
 	height: 0.6rem;
 	background: var(--white-50);
 	overflow: hidden;
+	border-radius: 0.3rem;
 }
 
 .progress-bar-background.--skewed-left {
@@ -15,6 +16,8 @@
 
 .progress-bar-fill {
 	height: 100%;
+	border-radius: 0.3rem;
+	transition: width 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .progress-bar-fill.--to-left,

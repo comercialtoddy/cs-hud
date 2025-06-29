@@ -3,15 +3,111 @@
 
 	display: flex;
 	align-items: center;
+	border-radius: 0.4rem;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	overflow: hidden;
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+}
+
+.primary::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: radial-gradient(
+		circle at center,
+		rgba(255, 255, 255, 0.1) 0%,
+		transparent 70%
+	);
+	opacity: 0;
+	transition: opacity 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.primary::after {
+	content: '';
+	position: absolute;
+	top: -100%;
+	left: -100%;
+	width: 300%;
+	height: 300%;
+	background: conic-gradient(
+		from 0deg,
+		transparent,
+		rgba(255, 255, 255, 0.05),
+		transparent
+	);
+	opacity: 0;
+	transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+	animation: weaponScan 6s linear infinite;
+}
+
+.primary:hover {
+	transform: translateY(-2px) scale(1.05);
+	background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+	box-shadow: 
+		0 4px 20px rgba(255, 255, 255, 0.2),
+		inset 0 1px 3px rgba(255, 255, 255, 0.1);
+}
+
+.primary:hover::before {
+	opacity: 1;
+}
+
+.primary:hover::after {
+	opacity: 1;
 }
 
 .primary img {
 	height: 2rem;
-	transition: opacity var(--fade-fast-duration) ease;
+	transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+	filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+	position: relative;
+	z-index: 2;
 }
 
 .primary img:not(.--active) {
 	opacity: 0.5;
+	filter: grayscale(0.5) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.primary:hover img {
+	transform: scale(1.1) translateZ(0);
+	filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.2));
+}
+
+.primary:hover img:not(.--active) {
+	opacity: 0.8;
+	filter: grayscale(0.2) drop-shadow(0 4px 8px rgba(255, 255, 255, 0.2));
+}
+
+.primary img.--active {
+	position: relative;
+}
+
+.primary img.--active::before {
+	content: '';
+	position: absolute;
+	top: -10%;
+	left: -10%;
+	right: -10%;
+	bottom: -10%;
+	background: linear-gradient(
+		45deg,
+		rgba(255, 255, 255, 0.1),
+		transparent 50%,
+		rgba(255, 255, 255, 0.1)
+	);
+	opacity: 0;
+	transition: opacity 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.3rem;
+	z-index: -1;
+}
+
+.primary:hover img.--active::before {
+	opacity: 1;
 }
 
 .primary.--left {
@@ -26,4 +122,43 @@
 
 .primary.--right img {
 	transform: rotateY(180deg);
+}
+
+.primary.--right:hover img {
+	transform: rotateY(180deg) scale(1.1) translateZ(0);
+}
+
+/* Animação para arma equipada */
+.primary.--equipped {
+	animation: weaponReady 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes weaponScan {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+@keyframes weaponReady {
+	0%, 100% { 
+		box-shadow: 0 0 6px rgba(255, 255, 255, 0.3);
+		filter: brightness(1);
+	}
+	50% { 
+		box-shadow: 0 0 16px rgba(255, 255, 255, 0.6);
+		filter: brightness(1.1);
+	}
+}
+
+/* Efeito especial para armas especiais */
+.primary.--special {
+	animation: specialWeaponGlow 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes specialWeaponGlow {
+	0%, 100% { 
+		background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%);
+	}
+	50% { 
+		background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 215, 0, 0.05) 100%);
+	}
 }

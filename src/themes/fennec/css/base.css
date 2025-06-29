@@ -14,3 +14,1340 @@ html {
 body {
 	font: 2rem/1 var(--font-family);
 }
+
+/* === MODERN UI ENHANCEMENTS === */
+/* Bordas arredondadas uniformes para todos os componentes */
+
+/* Componentes principais */
+.player,
+.focused-player .inner,
+.health-and-armor .inner,
+.team,
+.center,
+.sidebar,
+.radar,
+.progress-bar,
+.digits-wrapper,
+.corner,
+.top-bar,
+.series-graph-wrapper,
+.players-alive,
+.ammo,
+.name-row {
+	border-radius: 0.6rem;
+}
+
+/* Componentes menores */
+.observer-slot,
+.health-bar,
+.name,
+.money,
+.kills,
+.deaths,
+.equipment,
+.grenades,
+.taser,
+.primary,
+.secondary,
+.additional-stats,
+.score,
+.current-round,
+.current-map,
+.map-wins,
+.match-point-rounds,
+.series-name,
+.bomb-timer,
+.timeout,
+.round-winner,
+.round-graph,
+.match,
+.grenade,
+.alive-player {
+	border-radius: 0.4rem;
+}
+
+/* Ícones e elementos pequenos */
+img,
+.icon,
+.weapon-icon,
+.grenade-icon,
+.stat-icon,
+.digit,
+.logo,
+.reserve,
+.slot,
+.circle {
+	border-radius: 0.3rem;
+}
+
+/* === ANIMAÇÕES SUAVES === */
+/* Transições suaves para todos os elementos interativos */
+
+.player,
+.focused-player .inner,
+.health-and-armor .inner,
+.team,
+.center,
+.sidebar,
+.progress-bar,
+.observer-slot,
+.health-bar,
+.name,
+.money,
+.kills,
+.deaths,
+.equipment,
+.grenades,
+.taser,
+.primary,
+.secondary,
+.additional-stats,
+.score,
+.current-round,
+.current-map,
+.map-wins,
+.match-point-rounds,
+.series-name,
+.bomb-timer,
+.timeout,
+.round-winner,
+.top-bar,
+.series-graph-wrapper,
+.players-alive,
+.round-graph,
+.match,
+.ammo,
+.name-row,
+.grenade,
+.alive-player,
+.reserve,
+.slot,
+.circle-and-arrow {
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Animações para elementos com hover (quando aplicável) */
+.player:hover,
+.team:hover,
+.equipment:hover,
+.grenades:hover,
+.primary:hover,
+.secondary:hover,
+.money:hover,
+.kills:hover,
+.deaths:hover,
+.name:hover,
+.ammo:hover,
+.current-round:hover {
+	transform: translateY(-1px);
+	filter: var(--filter-drop-shadow) brightness(1.05);
+}
+
+/* Micro-animações para elementos pequenos */
+.observer-slot:hover,
+.taser:hover,
+.digit:hover,
+.reserve:hover,
+.slot:hover {
+	transform: scale(1.05);
+}
+
+/* Efeitos sutis de glow para elementos importantes */
+.health-and-armor .inner:hover,
+.score .inner:hover,
+.ammo .inner:hover,
+.name-row:hover {
+	box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+/* === EFEITOS AVANÇADOS === */
+
+/* Shimmer effect para elementos importantes */
+@keyframes shimmer {
+	0% { background-position: -200% 0; }
+	100% { background-position: 200% 0; }
+}
+
+.player,
+.score,
+.ammo,
+.current-round {
+	background-image: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.05),
+		transparent
+	);
+	background-size: 200% 100%;
+	background-repeat: no-repeat;
+	background-position: -200% 0;
+}
+
+.player:hover,
+.score:hover,
+.ammo:hover,
+.current-round:hover {
+	animation: shimmer 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Pulse effect para elementos críticos */
+@keyframes criticalPulse {
+	0%, 100% { 
+		box-shadow: 0 0 4px rgba(255, 51, 51, 0.3);
+		transform: scale(1);
+	}
+	50% { 
+		box-shadow: 0 0 12px rgba(255, 51, 51, 0.6);
+		transform: scale(1.01);
+	}
+}
+
+.bomb-timer.--critical,
+.health.--critical {
+	animation: criticalPulse 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+/* Breathing effect para focused elements */
+@keyframes breathe {
+	0%, 100% { transform: scale(1); }
+	50% { transform: scale(1.02); }
+}
+
+.focused-player:hover,
+.alive-player.--focused {
+	animation: breathe 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+/* === REFINAMENTOS ESPECÍFICOS === */
+
+/* Melhorias no focused-player */
+.focused-player:hover {
+	transform: translateY(-2px);
+}
+
+/* Melhorias no radar */
+.radar:hover {
+	transform: scale(1.02);
+}
+
+/* Melhorias nas sidebars */
+.sidebar:hover {
+	transform: translateX(2px);
+}
+
+.sidebar.--right:hover {
+	transform: translateX(-2px);
+}
+
+/* Animações de entrada suaves para elementos dinâmicos */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.player,
+.score,
+.current-round,
+.bomb-timer,
+.timeout,
+.ammo,
+.grenade {
+	animation: fadeInUp 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+/* Pulso sutil para elementos de atenção */
+@keyframes subtlePulse {
+	0%, 100% { transform: scale(1); }
+	50% { transform: scale(1.02); }
+}
+
+.bomb-timer.--critical {
+	animation: subtlePulse 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+/* Gradiente sutil em fundos escuros */
+.player,
+.top-bar-team-panel,
+.ammo .inner,
+.equipment {
+	background: linear-gradient(135deg, var(--black-50) 0%, var(--black-60) 100%);
+}
+
+/* === EFEITOS DE LOADING E TRANSIÇÃO === */
+
+/* Skeleton loading effect */
+@keyframes skeleton {
+	0%, 100% { opacity: 0.6; }
+	50% { opacity: 1; }
+}
+
+.loading {
+	animation: skeleton 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+/* Smooth state transitions */
+.state-transition {
+	transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+/* Advanced hover states */
+.interactive-element:hover {
+	transform: translateZ(0) scale(1.02);
+	box-shadow: 
+		0 4px 8px rgba(0, 0, 0, 0.1),
+		0 0 16px rgba(255, 255, 255, 0.05);
+}
+
+/* Layered depth effects */
+.depth-layer-1 { z-index: 10; }
+.depth-layer-2 { z-index: 20; }
+.depth-layer-3 { z-index: 30; }
+
+/* Performance optimizations */
+.gpu-accelerated {
+	transform: translateZ(0);
+	will-change: transform, opacity;
+}
+
+/* Ultra-Advanced Cinematic Keyframes */
+@keyframes parallaxFloat {
+	0%, 100% { 
+		transform: translateY(0) rotateX(0deg);
+	}
+	33% { 
+		transform: translateY(-2px) rotateX(1deg);
+	}
+	66% { 
+		transform: translateY(2px) rotateX(-1deg);
+	}
+}
+
+@keyframes holographicGlow {
+	0%, 100% { 
+		box-shadow: 
+			0 0 5px rgba(0, 255, 255, 0.3),
+			inset 0 0 10px rgba(0, 255, 255, 0.1);
+		filter: hue-rotate(0deg);
+	}
+	50% { 
+		box-shadow: 
+			0 0 20px rgba(0, 255, 255, 0.6),
+			inset 0 0 20px rgba(0, 255, 255, 0.2);
+		filter: hue-rotate(30deg);
+	}
+}
+
+@keyframes energyPulse {
+	0% { 
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+		transform: scale(1);
+	}
+	50% { 
+		box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+		transform: scale(1.02);
+	}
+	100% { 
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+		transform: scale(1);
+	}
+}
+
+@keyframes morphBreathe {
+	0%, 100% { 
+		border-radius: 0.4rem;
+		transform: scale(1);
+	}
+	50% { 
+		border-radius: 0.6rem;
+		transform: scale(1.01);
+	}
+}
+
+@keyframes quantumFlicker {
+	0%, 90%, 100% { opacity: 1; }
+	5%, 15%, 25%, 35%, 45% { opacity: 0.7; }
+	10%, 20%, 30%, 40% { opacity: 0.9; }
+}
+
+@keyframes dimensionalShift {
+	0% { 
+		transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+		filter: brightness(1);
+	}
+	25% { 
+		transform: perspective(1000px) rotateY(2deg) rotateX(1deg);
+		filter: brightness(1.1);
+	}
+	50% { 
+		transform: perspective(1000px) rotateY(0deg) rotateX(2deg);
+		filter: brightness(1.2);
+	}
+	75% { 
+		transform: perspective(1000px) rotateY(-2deg) rotateX(1deg);
+		filter: brightness(1.1);
+	}
+	100% { 
+		transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+		filter: brightness(1);
+	}
+}
+
+@keyframes plasmaFlow {
+	0% { 
+		background-position: 0% 50%;
+		filter: hue-rotate(0deg);
+	}
+	50% { 
+		background-position: 100% 50%;
+		filter: hue-rotate(180deg);
+	}
+	100% { 
+		background-position: 0% 50%;
+		filter: hue-rotate(360deg);
+	}
+}
+
+@keyframes neuralNetwork {
+	0%, 100% { 
+		background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+		           radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+	}
+	33% { 
+		background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.15) 0%, transparent 50%),
+		           radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+	}
+	66% { 
+		background: radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.12) 0%, transparent 50%),
+		           radial-gradient(circle at 50% 90%, rgba(255, 255, 255, 0.12) 0%, transparent 50%);
+	}
+}
+
+@keyframes cyberpunkGlitch {
+	0%, 90%, 100% { 
+		transform: translate(0);
+		filter: hue-rotate(0deg);
+	}
+	10% { 
+		transform: translate(-2px, 1px);
+		filter: hue-rotate(90deg);
+	}
+	20% { 
+		transform: translate(2px, -1px);
+		filter: hue-rotate(180deg);
+	}
+	30% { 
+		transform: translate(-1px, 2px);
+		filter: hue-rotate(270deg);
+	}
+}
+
+@keyframes matrixRain {
+	0% { 
+		background-position: 0 -100%;
+		opacity: 0;
+	}
+	10% { 
+		opacity: 1;
+	}
+	90% { 
+		opacity: 1;
+	}
+	100% { 
+		background-position: 0 100%;
+		opacity: 0;
+	}
+}
+
+@keyframes stellarDrift {
+	0% { 
+		transform: rotate(0deg) translateX(0px) rotate(0deg);
+		opacity: 0.3;
+	}
+	50% { 
+		opacity: 1;
+	}
+	100% { 
+		transform: rotate(360deg) translateX(50px) rotate(-360deg);
+		opacity: 0.3;
+	}
+}
+
+/* Advanced Interactive States */
+.--cinematic-hover {
+	transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.--cinematic-hover:hover {
+	animation: dimensionalShift 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--quantum-element {
+	animation: quantumFlicker 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--holographic {
+	animation: holographicGlow 4s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--neural-active {
+	animation: neuralNetwork 6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--plasma-flow {
+	background: linear-gradient(-45deg, 
+		rgba(255, 0, 150, 0.1), 
+		rgba(0, 255, 255, 0.1), 
+		rgba(255, 255, 0, 0.1), 
+		rgba(150, 0, 255, 0.1));
+	background-size: 400% 400%;
+	animation: plasmaFlow 8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--energy-pulse {
+	animation: energyPulse 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--morph-breathe {
+	animation: morphBreathe 4s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--parallax-float {
+	animation: parallaxFloat 6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--cyberpunk-glitch {
+	animation: cyberpunkGlitch 0.3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--stellar-drift {
+	animation: stellarDrift 10s linear infinite;
+}
+
+/* Ultra-Advanced GPU Optimizations */
+.--gpu-accelerated {
+	will-change: transform, opacity, filter;
+	transform: translateZ(0);
+	backface-visibility: hidden;
+	perspective: 1000px;
+}
+
+.--3d-transform {
+	transform-style: preserve-3d;
+}
+
+.--hardware-layer {
+	transform: translate3d(0, 0, 0);
+	will-change: transform;
+}
+
+/* Ultra-Transcendental Dimensional Keyframes - Phase 6 */
+@keyframes dimensionalRift {
+	0% { 
+		transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+		filter: brightness(1) blur(0px);
+	}
+	25% { 
+		transform: perspective(1000px) rotateX(15deg) rotateY(5deg) translateZ(20px);
+		filter: brightness(1.3) blur(1px);
+	}
+	50% { 
+		transform: perspective(1000px) rotateX(0deg) rotateY(10deg) translateZ(40px);
+		filter: brightness(1.6) blur(2px);
+	}
+	75% { 
+		transform: perspective(1000px) rotateX(-15deg) rotateY(5deg) translateZ(20px);
+		filter: brightness(1.3) blur(1px);
+	}
+	100% { 
+		transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+		filter: brightness(1) blur(0px);
+	}
+}
+
+@keyframes cosmicResonance {
+	0%, 100% { 
+		background: radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+		transform: scale(1) rotate(0deg);
+	}
+	20% { 
+		background: radial-gradient(circle at 30% 70%, rgba(75, 0, 130, 0.15) 0%, transparent 70%);
+		transform: scale(1.02) rotate(72deg);
+	}
+	40% { 
+		background: radial-gradient(circle at 70% 30%, rgba(0, 0, 255, 0.2) 0%, transparent 70%);
+		transform: scale(1.04) rotate(144deg);
+	}
+	60% { 
+		background: radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.15) 0%, transparent 70%);
+		transform: scale(1.02) rotate(216deg);
+	}
+	80% { 
+		background: radial-gradient(circle at 80% 80%, rgba(255, 20, 147, 0.1) 0%, transparent 70%);
+		transform: scale(1.01) rotate(288deg);
+	}
+}
+
+@keyframes temporalPhase {
+	0% { 
+		opacity: 1;
+		transform: translateX(0) skewX(0deg);
+		filter: hue-rotate(0deg) saturate(1);
+	}
+	16% { 
+		opacity: 0.8;
+		transform: translateX(-2px) skewX(2deg);
+		filter: hue-rotate(60deg) saturate(1.2);
+	}
+	32% { 
+		opacity: 0.6;
+		transform: translateX(2px) skewX(-2deg);
+		filter: hue-rotate(120deg) saturate(1.4);
+	}
+	48% { 
+		opacity: 0.8;
+		transform: translateX(-1px) skewX(1deg);
+		filter: hue-rotate(180deg) saturate(1.2);
+	}
+	64% { 
+		opacity: 0.9;
+		transform: translateX(1px) skewX(-1deg);
+		filter: hue-rotate(240deg) saturate(1.1);
+	}
+	80% { 
+		opacity: 0.95;
+		transform: translateX(-0.5px) skewX(0.5deg);
+		filter: hue-rotate(300deg) saturate(1.05);
+	}
+	100% { 
+		opacity: 1;
+		transform: translateX(0) skewX(0deg);
+		filter: hue-rotate(360deg) saturate(1);
+	}
+}
+
+@keyframes etherealDrift {
+	0%, 100% { 
+		transform: translateY(0) translateX(0) rotateZ(0deg);
+		opacity: 0.7;
+		filter: blur(0px) brightness(1);
+	}
+	25% { 
+		transform: translateY(-3px) translateX(2px) rotateZ(1deg);
+		opacity: 0.9;
+		filter: blur(0.5px) brightness(1.1);
+	}
+	50% { 
+		transform: translateY(-5px) translateX(0) rotateZ(0deg);
+		opacity: 1;
+		filter: blur(1px) brightness(1.2);
+	}
+	75% { 
+		transform: translateY(-3px) translateX(-2px) rotateZ(-1deg);
+		opacity: 0.9;
+		filter: blur(0.5px) brightness(1.1);
+	}
+}
+
+@keyframes voidPulse {
+	0%, 100% { 
+		box-shadow: 
+			0 0 0 0 rgba(0, 0, 0, 0.7),
+			inset 0 0 20px rgba(128, 128, 128, 0.1);
+		transform: scale(1);
+	}
+	50% { 
+		box-shadow: 
+			0 0 0 15px rgba(0, 0, 0, 0),
+			inset 0 0 40px rgba(128, 128, 128, 0.3);
+		transform: scale(1.03);
+	}
+}
+
+@keyframes prismRefraction {
+	0% { 
+		filter: hue-rotate(0deg) saturate(1) brightness(1);
+		background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+	}
+	14% { 
+		filter: hue-rotate(51deg) saturate(1.2) brightness(1.1);
+		background: linear-gradient(45deg, transparent, rgba(255, 0, 0, 0.1), transparent);
+	}
+	28% { 
+		filter: hue-rotate(102deg) saturate(1.4) brightness(1.2);
+		background: linear-gradient(45deg, transparent, rgba(255, 165, 0, 0.1), transparent);
+	}
+	42% { 
+		filter: hue-rotate(153deg) saturate(1.6) brightness(1.3);
+		background: linear-gradient(45deg, transparent, rgba(255, 255, 0, 0.1), transparent);
+	}
+	56% { 
+		filter: hue-rotate(204deg) saturate(1.4) brightness(1.2);
+		background: linear-gradient(45deg, transparent, rgba(0, 255, 0, 0.1), transparent);
+	}
+	70% { 
+		filter: hue-rotate(255deg) saturate(1.2) brightness(1.1);
+		background: linear-gradient(45deg, transparent, rgba(0, 0, 255, 0.1), transparent);
+	}
+	84% { 
+		filter: hue-rotate(306deg) saturate(1.1) brightness(1.05);
+		background: linear-gradient(45deg, transparent, rgba(75, 0, 130, 0.1), transparent);
+	}
+	100% { 
+		filter: hue-rotate(360deg) saturate(1) brightness(1);
+		background: linear-gradient(45deg, transparent, rgba(238, 130, 238, 0.1), transparent);
+	}
+}
+
+@keyframes magneticField {
+	0%, 100% { 
+		transform: translateX(0) translateY(0);
+		filter: blur(0px);
+	}
+	20% { 
+		transform: translateX(1px) translateY(-1px);
+		filter: blur(0.2px);
+	}
+	40% { 
+		transform: translateX(-1px) translateY(1px);
+		filter: blur(0.4px);
+	}
+	60% { 
+		transform: translateX(1px) translateY(1px);
+		filter: blur(0.2px);
+	}
+	80% { 
+		transform: translateX(-1px) translateY(-1px);
+		filter: blur(0.1px);
+	}
+}
+
+@keyframes spectralShift {
+	0% { 
+		background: linear-gradient(135deg, rgba(255, 0, 0, 0.1) 0%, transparent 100%);
+		border-color: rgba(255, 0, 0, 0.3);
+	}
+	16% { 
+		background: linear-gradient(135deg, rgba(255, 165, 0, 0.1) 0%, transparent 100%);
+		border-color: rgba(255, 165, 0, 0.3);
+	}
+	32% { 
+		background: linear-gradient(135deg, rgba(255, 255, 0, 0.1) 0%, transparent 100%);
+		border-color: rgba(255, 255, 0, 0.3);
+	}
+	48% { 
+		background: linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, transparent 100%);
+		border-color: rgba(0, 255, 0, 0.3);
+	}
+	64% { 
+		background: linear-gradient(135deg, rgba(0, 0, 255, 0.1) 0%, transparent 100%);
+		border-color: rgba(0, 0, 255, 0.3);
+	}
+	80% { 
+		background: linear-gradient(135deg, rgba(75, 0, 130, 0.1) 0%, transparent 100%);
+		border-color: rgba(75, 0, 130, 0.3);
+	}
+	100% { 
+		background: linear-gradient(135deg, rgba(238, 130, 238, 0.1) 0%, transparent 100%);
+		border-color: rgba(238, 130, 238, 0.3);
+	}
+}
+
+@keyframes digitalDisruption {
+	0%, 95%, 100% { 
+		transform: translate(0);
+		filter: brightness(1) contrast(1);
+		opacity: 1;
+	}
+	5% { 
+		transform: translate(2px, 0);
+		filter: brightness(1.5) contrast(1.5);
+		opacity: 0.8;
+	}
+	10% { 
+		transform: translate(-2px, 0);
+		filter: brightness(0.5) contrast(2);
+		opacity: 0.6;
+	}
+	15% { 
+		transform: translate(0, 2px);
+		filter: brightness(2) contrast(0.5);
+		opacity: 0.9;
+	}
+	20% { 
+		transform: translate(0, -2px);
+		filter: brightness(1) contrast(1);
+		opacity: 1;
+	}
+}
+
+@keyframes arcaneResonance {
+	0%, 100% { 
+		background: conic-gradient(from 0deg, 
+			rgba(138, 43, 226, 0.1), 
+			rgba(75, 0, 130, 0.1), 
+			rgba(0, 0, 255, 0.1), 
+			rgba(0, 255, 255, 0.1),
+			rgba(0, 255, 0, 0.1),
+			rgba(255, 255, 0, 0.1),
+			rgba(255, 165, 0, 0.1),
+			rgba(255, 0, 0, 0.1),
+			rgba(138, 43, 226, 0.1)
+		);
+		transform: rotate(0deg) scale(1);
+	}
+	50% { 
+		background: conic-gradient(from 180deg, 
+			rgba(138, 43, 226, 0.2), 
+			rgba(75, 0, 130, 0.2), 
+			rgba(0, 0, 255, 0.2), 
+			rgba(0, 255, 255, 0.2),
+			rgba(0, 255, 0, 0.2),
+			rgba(255, 255, 0, 0.2),
+			rgba(255, 165, 0, 0.2),
+			rgba(255, 0, 0, 0.2),
+			rgba(138, 43, 226, 0.2)
+		);
+		transform: rotate(180deg) scale(1.02);
+	}
+}
+
+/* Ultra-Advanced State Classes */
+.--dimensional-rift {
+	animation: dimensionalRift 6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--cosmic-resonance {
+	animation: cosmicResonance 8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--temporal-phase {
+	animation: temporalPhase 4s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--ethereal-drift {
+	animation: etherealDrift 5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--void-pulse {
+	animation: voidPulse 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--prism-refraction {
+	animation: prismRefraction 7s linear infinite;
+}
+
+.--magnetic-field {
+	animation: magneticField 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--spectral-shift {
+	animation: spectralShift 6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--digital-disruption {
+	animation: digitalDisruption 0.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--arcane-resonance {
+	animation: arcaneResonance 10s linear infinite;
+}
+
+/* Transcendental Composite Effects */
+.--supreme-focus {
+	animation: 
+		cosmicResonance 8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite,
+		etherealDrift 5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--dimensional-mastery {
+	animation: 
+		dimensionalRift 6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite,
+		prismRefraction 7s linear infinite;
+}
+
+.--temporal-lord {
+	animation: 
+		temporalPhase 4s cubic-bezier(0.4, 0.0, 0.2, 1) infinite,
+		arcaneResonance 10s linear infinite;
+}
+
+.--void-master {
+	animation: 
+		voidPulse 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite,
+		magneticField 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+/* Ultra-Supreme GPU Acceleration */
+.--ultimate-acceleration {
+	will-change: transform, opacity, filter;
+	transform: translate3d(0, 0, 0);
+	backface-visibility: hidden;
+	perspective: 1000px;
+	contain: layout style paint;
+}
+
+.--reality-bender {
+	transform-style: preserve-3d;
+	perspective-origin: center center;
+	animation-fill-mode: both;
+}
+
+/* Ultra-Supreme Phase 7 - Transcendental Weapon & Equipment Systems */
+@keyframes weaponMastery {
+	0%, 100% { 
+		transform: perspective(500px) rotateX(0deg) rotateY(0deg);
+		filter: brightness(1) hue-rotate(0deg);
+	}
+	25% { 
+		transform: perspective(500px) rotateX(5deg) rotateY(2deg);
+		filter: brightness(1.2) hue-rotate(30deg);
+	}
+	50% { 
+		transform: perspective(500px) rotateX(0deg) rotateY(5deg);
+		filter: brightness(1.4) hue-rotate(60deg);
+	}
+	75% { 
+		transform: perspective(500px) rotateX(-5deg) rotateY(2deg);
+		filter: brightness(1.2) hue-rotate(30deg);
+	}
+}
+
+@keyframes electricalSurge {
+	0%, 95%, 100% { 
+		box-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+		filter: brightness(1);
+	}
+	5% { 
+		box-shadow: 0 0 25px rgba(255, 255, 0, 0.8);
+		filter: brightness(2) saturate(2);
+	}
+	10% { 
+		box-shadow: 0 0 20px rgba(0, 255, 255, 0.9);
+		filter: brightness(1.8) saturate(1.8);
+	}
+	15% { 
+		box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+		filter: brightness(2.2) saturate(0.5);
+	}
+}
+
+@keyframes economicFlow {
+	0%, 100% { 
+		background: linear-gradient(90deg, rgba(0, 128, 0, 0.05), rgba(255, 215, 0, 0.08), rgba(0, 128, 0, 0.05));
+		transform: translateX(0);
+	}
+	50% { 
+		background: linear-gradient(90deg, rgba(255, 215, 0, 0.15), rgba(0, 255, 0, 0.12), rgba(255, 215, 0, 0.15));
+		transform: translateX(2px);
+	}
+}
+
+@keyframes dataVisualization {
+	0%, 100% { 
+		background: linear-gradient(135deg, rgba(0, 150, 255, 0.05) 0%, transparent 100%);
+		filter: brightness(1) saturate(1);
+	}
+	20% { 
+		background: linear-gradient(135deg, rgba(255, 215, 0, 0.08) 0%, rgba(0, 150, 255, 0.05) 100%);
+		filter: brightness(1.2) saturate(1.3);
+	}
+	40% { 
+		background: linear-gradient(135deg, rgba(0, 255, 0, 0.1) 0%, rgba(255, 215, 0, 0.08) 100%);
+		filter: brightness(1.4) saturate(1.6);
+	}
+	60% { 
+		background: linear-gradient(135deg, rgba(138, 43, 226, 0.08) 0%, rgba(0, 255, 0, 0.1) 100%);
+		filter: brightness(1.3) saturate(1.4);
+	}
+	80% { 
+		background: linear-gradient(135deg, rgba(255, 140, 0, 0.06) 0%, rgba(138, 43, 226, 0.08) 100%);
+		filter: brightness(1.1) saturate(1.1);
+	}
+}
+
+@keyframes tournamentPrestige {
+	0%, 100% { 
+		background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, transparent 100%);
+		transform: scale(1) rotate(0deg);
+	}
+	25% { 
+		background: linear-gradient(135deg, rgba(255, 140, 0, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+		transform: scale(1.01) rotate(0.5deg);
+	}
+	50% { 
+		background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(255, 140, 0, 0.1) 100%);
+		transform: scale(1.02) rotate(0deg);
+	}
+	75% { 
+		background: linear-gradient(135deg, rgba(255, 165, 0, 0.12) 0%, rgba(255, 215, 0, 0.15) 100%);
+		transform: scale(1.01) rotate(-0.5deg);
+	}
+}
+
+@keyframes finalMoment {
+	0%, 100% { 
+		background: linear-gradient(45deg, rgba(255, 0, 0, 0.1), rgba(255, 215, 0, 0.08), rgba(255, 0, 0, 0.1));
+		filter: brightness(1) contrast(1);
+	}
+	33% { 
+		background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(255, 0, 0, 0.15), rgba(255, 215, 0, 0.2));
+		filter: brightness(1.5) contrast(1.5);
+	}
+	66% { 
+		background: linear-gradient(45deg, rgba(255, 255, 255, 0.15), rgba(255, 215, 0, 0.2), rgba(255, 255, 255, 0.15));
+		filter: brightness(2) contrast(2);
+	}
+}
+
+@keyframes criticalRound {
+	0%, 100% { 
+		box-shadow: 0 0 10px rgba(255, 140, 0, 0.4);
+		border-color: rgba(255, 140, 0, 0.3);
+	}
+	25% { 
+		box-shadow: 0 0 20px rgba(255, 69, 0, 0.6);
+		border-color: rgba(255, 69, 0, 0.5);
+	}
+	50% { 
+		box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+		border-color: rgba(255, 0, 0, 0.7);
+		transform: scale(1.02);
+	}
+	75% { 
+		box-shadow: 0 0 25px rgba(255, 100, 0, 0.7);
+		border-color: rgba(255, 100, 0, 0.6);
+	}
+}
+
+/* Ultra-Supreme State Classes Phase 7 */
+.--weapon-mastery {
+	animation: weaponMastery 4s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--electrical-surge {
+	animation: electricalSurge 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--economic-flow {
+	animation: economicFlow 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--data-visualization {
+	animation: dataVisualization 5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--tournament-prestige {
+	animation: tournamentPrestige 6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--final-moment {
+	animation: finalMoment 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--critical-round {
+	animation: criticalRound 1.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+/* Supreme Composite Effects Phase 7 */
+.--ultimate-weapon {
+	animation: 
+		weaponMastery 4s cubic-bezier(0.4, 0.0, 0.2, 1) infinite,
+		energyPulse 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--economic-genius {
+	animation: 
+		economicFlow 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite,
+		dataVisualization 5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--championship-finale {
+	animation: 
+		tournamentPrestige 6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite,
+		finalMoment 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.--pressure-overload {
+	animation: 
+		criticalRound 1.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite,
+		electricalSurge 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+/* Transcendental Performance Optimization Phase 7 */
+.--supreme-performance {
+	will-change: transform, opacity, filter, background, border-color, box-shadow, text-shadow;
+	transform: translateZ(0) scale3d(1, 1, 1);
+	backface-visibility: hidden;
+	perspective: 1000px;
+	contain: layout style paint size;
+	animation-fill-mode: both;
+	transform-style: preserve-3d;
+}
+
+.--dimensional-transcendence {
+	perspective-origin: center center;
+	transform-origin: center center;
+	isolation: isolate;
+	mix-blend-mode: normal;
+	filter: contrast(1) saturate(1) brightness(1);
+}
+
+/* === KEYFRAMES SUPREMOS PHASE 8: TRANSCENDÊNCIA INFINITA === */
+/* Camadas 16-21: Efeitos dimensionais infinitos */
+
+/* Keyframes espectrais para jogadores mortos */
+@keyframes spectralHaunting {
+	0% { 
+		transform: scale(1) rotateZ(0deg);
+		opacity: 0.75;
+	}
+	25% { 
+		transform: scale(0.98) rotateZ(-0.5deg);
+		opacity: 0.6;
+	}
+	50% { 
+		transform: scale(1.02) rotateZ(0deg);
+		opacity: 0.8;
+	}
+	75% { 
+		transform: scale(0.99) rotateZ(0.5deg);
+		opacity: 0.65;
+	}
+	100% { 
+		transform: scale(1) rotateZ(0deg);
+		opacity: 0.75;
+	}
+}
+
+@keyframes memorialFade {
+	0%, 100% { 
+		filter: brightness(1) contrast(1);
+	}
+	50% { 
+		filter: brightness(0.7) contrast(1.2);
+	}
+}
+
+@keyframes ghostlyAura {
+	0% { 
+		box-shadow: 0 0 5px rgba(255, 255, 255, 0.1),
+					inset 0 0 10px rgba(255, 255, 255, 0.05);
+	}
+	100% { 
+		box-shadow: 0 0 15px rgba(255, 255, 255, 0.2),
+					inset 0 0 20px rgba(255, 255, 255, 0.1);
+	}
+}
+
+@keyframes etherealDrift {
+	0% { 
+		transform: translateY(0px);
+	}
+	25% { 
+		transform: translateY(-1px);
+	}
+	50% { 
+		transform: translateY(0px);
+	}
+	75% { 
+		transform: translateY(1px);
+	}
+	100% { 
+		transform: translateY(0px);
+	}
+}
+
+/* Keyframes explosivos para bomba derrubada */
+@keyframes explosiveResonance {
+	0%, 100% { 
+		transform: scale(1) rotateZ(0deg);
+		box-shadow: 0 0 8px rgba(255, 80, 80, 0.2);
+	}
+	25% { 
+		transform: scale(1.05) rotateZ(1deg);
+		box-shadow: 0 0 12px rgba(255, 80, 80, 0.3);
+	}
+	50% { 
+		transform: scale(0.98) rotateZ(0deg);
+		box-shadow: 0 0 15px rgba(255, 80, 80, 0.4);
+	}
+	75% { 
+		transform: scale(1.03) rotateZ(-1deg);
+		box-shadow: 0 0 10px rgba(255, 80, 80, 0.25);
+	}
+}
+
+@keyframes dangerPulse {
+	0% { 
+		filter: brightness(1) saturate(1) hue-rotate(0deg);
+	}
+	100% { 
+		filter: brightness(1.2) saturate(1.3) hue-rotate(5deg);
+	}
+}
+
+@keyframes volatileShake {
+	0%, 100% { 
+		transform: translateX(0px);
+	}
+	25% { 
+		transform: translateX(-0.5px);
+	}
+	50% { 
+		transform: translateX(0px);
+	}
+	75% { 
+		transform: translateX(0.5px);
+	}
+}
+
+/* Keyframes críticos para bomba plantada */
+@keyframes criticalBombTick {
+	0%, 90% { 
+		transform: scale(1);
+		box-shadow: 0 0 10px rgba(255, 60, 60, 0.3);
+	}
+	95% { 
+		transform: scale(1.08);
+		box-shadow: 0 0 18px rgba(255, 60, 60, 0.6);
+	}
+	100% { 
+		transform: scale(1.02);
+		box-shadow: 0 0 15px rgba(255, 60, 60, 0.4);
+	}
+}
+
+@keyframes tensionBuildup {
+	0% { 
+		filter: brightness(1) saturate(1) contrast(1);
+	}
+	100% { 
+		filter: brightness(1.3) saturate(1.4) contrast(1.2);
+	}
+}
+
+/* Keyframes nebulosos para fumaça */
+@keyframes etherealSmoke {
+	0%, 100% { 
+		transform: scale(1) rotate(0deg);
+		filter: blur(0px) brightness(1);
+	}
+	25% { 
+		transform: scale(1.05) rotate(90deg);
+		filter: blur(0.5px) brightness(0.9);
+	}
+	50% { 
+		transform: scale(0.98) rotate(180deg);
+		filter: blur(1px) brightness(1.1);
+	}
+	75% { 
+		transform: scale(1.03) rotate(270deg);
+		filter: blur(0.3px) brightness(0.95);
+	}
+}
+
+@keyframes tacticalCover {
+	0% { 
+		box-shadow: 0 0 5px rgba(255, 255, 255, 0.1),
+					inset 0 0 10px rgba(255, 255, 255, 0.05);
+	}
+	25% { 
+		box-shadow: 0 0 8px rgba(255, 255, 255, 0.15),
+					inset 0 0 15px rgba(255, 255, 255, 0.08);
+	}
+	50% { 
+		box-shadow: 0 0 12px rgba(255, 255, 255, 0.2),
+					inset 0 0 20px rgba(255, 255, 255, 0.1);
+	}
+	75% { 
+		box-shadow: 0 0 8px rgba(255, 255, 255, 0.15),
+					inset 0 0 15px rgba(255, 255, 255, 0.08);
+	}
+	100% { 
+		box-shadow: 0 0 5px rgba(255, 255, 255, 0.1),
+					inset 0 0 10px rgba(255, 255, 255, 0.05);
+	}
+}
+
+/* Keyframes flamejantes para inferno */
+@keyframes infernoBlaze {
+	0%, 100% { 
+		transform: scale(1) rotateZ(0deg);
+		filter: brightness(1) saturate(1) hue-rotate(0deg);
+		box-shadow: 0 0 8px rgba(255, 100, 0, 0.3),
+					inset 0 0 8px rgba(255, 150, 0, 0.2);
+	}
+	25% { 
+		transform: scale(1.08) rotateZ(90deg);
+		filter: brightness(1.2) saturate(1.3) hue-rotate(10deg);
+		box-shadow: 0 0 15px rgba(255, 100, 0, 0.5),
+					inset 0 0 12px rgba(255, 150, 0, 0.3);
+	}
+	50% { 
+		transform: scale(0.95) rotateZ(180deg);
+		filter: brightness(1.4) saturate(1.5) hue-rotate(-5deg);
+		box-shadow: 0 0 20px rgba(255, 100, 0, 0.6),
+					inset 0 0 15px rgba(255, 150, 0, 0.4);
+	}
+	75% { 
+		transform: scale(1.05) rotateZ(270deg);
+		filter: brightness(1.1) saturate(1.2) hue-rotate(5deg);
+		box-shadow: 0 0 12px rgba(255, 100, 0, 0.4),
+					inset 0 0 10px rgba(255, 150, 0, 0.25);
+	}
+}
+
+@keyframes devastationZone {
+	0% { 
+		opacity: 1;
+		transform: scale(1);
+	}
+	100% { 
+		opacity: 0.8;
+		transform: scale(1.02);
+	}
+}
+
+/* Keyframes balísticos para projéteis */
+@keyframes ballisticTrajectory {
+	0%, 100% { 
+		transform: scale(1) rotateZ(0deg);
+		filter: brightness(1);
+	}
+	50% { 
+		transform: scale(1.05) rotateZ(180deg);
+		filter: brightness(1.2);
+	}
+}
+
+@keyframes projectilePhysics {
+	0% { 
+		box-shadow: 0 0 3px rgba(255, 255, 100, 0.2);
+	}
+	50% { 
+		box-shadow: 0 0 6px rgba(255, 255, 100, 0.4);
+	}
+	100% { 
+		box-shadow: 0 0 3px rgba(255, 255, 100, 0.2);
+	}
+}
+
+/* === PHASE 8 ADVANCED HOVER EFFECTS === */
+/* Efeitos de hover dimensional infinito */
+
+.dead-player:hover,
+.dropped-bomb:hover,
+.planted-bomb:hover,
+.smoke:hover,
+.flame:hover,
+.projectile:hover {
+	animation-duration: 0.8s;
+	transform: scale(1.03) translateZ(2px);
+	filter: brightness(1.1) saturate(1.2);
+}

@@ -6,10 +6,78 @@
 
 	padding: 0.5rem;
 	font-size: 1.5rem;
+	border-radius: 0.4rem;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	overflow: hidden;
+	background: linear-gradient(135deg, rgba(128, 128, 128, 0.03) 0%, transparent 100%);
+}
+
+.deaths::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(128, 128, 128, 0.15),
+		transparent
+	);
+	transition: left 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.deaths::after {
+	content: '💀';
+	position: absolute;
+	top: 50%;
+	right: -35px;
+	transform: translateY(-50%);
+	font-size: 2rem;
+	color: rgba(128, 128, 128, 0.1);
+	transition: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+	z-index: -1;
+}
+
+.deaths:hover {
+	transform: translateY(-2px) scale(1.03);
+	background: linear-gradient(135deg, rgba(128, 128, 128, 0.1) 0%, rgba(128, 128, 128, 0.03) 100%);
+	box-shadow: 
+		0 4px 16px rgba(128, 128, 128, 0.3),
+		inset 0 1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.deaths:hover::before {
+	left: 100%;
+}
+
+.deaths:hover::after {
+	right: -20px;
+	color: rgba(128, 128, 128, 0.4);
+	transform: translateY(-50%) rotate(-15deg) scale(1.2);
 }
 
 .label {
 	margin-right: 0.25em;
+	position: relative;
+	transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.label::after {
+	content: '';
+	position: absolute;
+	bottom: -2px;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background: currentColor;
+	transition: width 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.deaths:hover .label::after {
+	width: 100%;
 }
 
 .label.--ct {
@@ -23,8 +91,71 @@
 .value {
 	min-width: 2ch;
 	text-align: right;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.value::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 0;
+	height: 0;
+	background: radial-gradient(circle, rgba(128, 128, 128, 0.3) 0%, transparent 70%);
+	transform: translate(-50%, -50%);
+	transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 50%;
+}
+
+.deaths:hover .value {
+	transform: scale(1.1);
+	font-weight: 700;
+	text-shadow: 0 0 8px rgba(128, 128, 128, 0.5);
+}
+
+.deaths:hover .value::before {
+	width: 40px;
+	height: 40px;
 }
 
 .v-enter-active {
 	transition-delay: var(--fade-fast-duration);
+}
+
+/* Animação para death streak */
+.deaths.--streak {
+	animation: deathSorrow 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes deathSorrow {
+	0%, 100% { 
+		filter: grayscale(0);
+		opacity: 1;
+	}
+	50% { 
+		filter: grayscale(0.3);
+		opacity: 0.8;
+	}
+}
+
+/* Efeito de morte recente */
+.deaths.--recent-death {
+	animation: recentDeath 1s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+@keyframes recentDeath {
+	0% { 
+		transform: scale(1);
+		background: rgba(128, 128, 128, 0.05);
+	}
+	50% { 
+		transform: scale(1.15);
+		background: rgba(128, 128, 128, 0.2);
+		filter: brightness(0.7);
+	}
+	100% { 
+		transform: scale(1);
+		background: rgba(128, 128, 128, 0.03);
+	}
 }

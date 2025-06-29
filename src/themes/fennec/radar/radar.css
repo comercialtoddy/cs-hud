@@ -4,10 +4,13 @@
 	width: var(--radar-width);
 	aspect-ratio: 1;
 	overflow: hidden; /* might break the drop shadow on some maps (not sure), but prevents players floating around on screen during 1v1 warmups */
+	border-radius: 0.6rem;
+	transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 img.radar-image {
 	width: 100%;
+	border-radius: 0.6rem;
 }
 
 img.radar-image.--transparent-background {

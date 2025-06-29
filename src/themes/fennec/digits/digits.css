@@ -2,4 +2,11 @@
 	display: inline-block;
 	min-width: 1ch;
 	text-align: center;
+	border-radius: 0.3rem;
+	transition: all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.digit:hover {
+	transform: scale(1.1);
+	background: rgba(255, 255, 255, 0.1);
 }

@@ -7,6 +7,8 @@
 	display: flex;
 	flex: 1;
 	font-size: 3rem;
+	border-radius: 0.6rem;
+	overflow: hidden;
 }
 
 .inner {
@@ -17,11 +19,12 @@
 	align-items: center;
 	justify-content: space-between;
 
-	transition: background-color var(--fade-fast-duration) ease;
+	transition: background-color var(--fade-fast-duration) cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 img {
 	height: 2rem;
+	border-radius: 0.3rem;
 }
 
 .health-and-armor::before,
@@ -29,16 +32,18 @@ img {
 	content: '';
 	width: 2rem;
 
-	transition: background-color var(--fade-fast-duration) ease;
+	transition: background-color var(--fade-fast-duration) cubic-bezier(0.4, 0.0, 0.2, 1);
 	z-index: -1;
 }
 
 .health-and-armor::before {
 	transform: skewX(20deg) translateX(50%);
+	border-radius: 0 0.6rem 0.6rem 0;
 }
 
 .health-and-armor::after {
 	transform: skewX(20deg) translateX(-50%);
+	border-radius: 0.6rem 0 0 0.6rem;
 }
 
 .inner.--ct,

@@ -3,9 +3,176 @@
 
 	width: 100%;
 	height: 100%;
-	transition: background-color var(--fade-fast-duration) ease;
+	transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
+	position: relative;
+	overflow: hidden;
+}
+
+.focused-player-highlight::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: radial-gradient(
+		ellipse at center,
+		rgba(255, 255, 255, 0.1) 0%,
+		rgba(255, 255, 255, 0.05) 30%,
+		transparent 70%
+	);
+	opacity: 0;
+	transition: opacity 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
+}
+
+.focused-player-highlight::after {
+	content: '';
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: conic-gradient(
+		from 0deg,
+		transparent,
+		rgba(255, 255, 255, 0.1),
+		transparent 30%,
+		rgba(255, 255, 255, 0.05),
+		transparent 60%,
+		rgba(255, 255, 255, 0.1),
+		transparent
+	);
+	opacity: 0;
+	transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+	animation: spotlightRotate 8s linear infinite;
+	border-radius: 50%;
 }
 
 .focused-player-highlight.--active {
 	background: var(--white-75);
+	position: relative;
+	box-shadow: 
+		0 0 20px rgba(255, 255, 255, 0.4),
+		inset 0 1px 3px rgba(255, 255, 255, 0.2);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.focused-player-highlight.--active::before {
+	opacity: 1;
+}
+
+.focused-player-highlight.--active::after {
+	opacity: 1;
+}
+
+/* Estados especiais de foco */
+.focused-player-highlight.--spotlight {
+	animation: spotlight 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.focused-player-highlight.--attention {
+	animation: attention 2s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.focused-player-highlight.--cinematic {
+	animation: cinematic 5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.focused-player-highlight.--pulse-focus {
+	animation: pulseFocus 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes spotlightRotate {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+@keyframes spotlight {
+	0%, 100% { 
+		background: var(--white-75);
+		box-shadow: 
+			0 0 15px rgba(255, 255, 255, 0.3),
+			inset 0 1px 3px rgba(255, 255, 255, 0.2);
+	}
+	50% { 
+		background: rgba(255, 255, 255, 0.9);
+		box-shadow: 
+			0 0 30px rgba(255, 255, 255, 0.6),
+			inset 0 2px 6px rgba(255, 255, 255, 0.4);
+	}
+}
+
+@keyframes attention {
+	0%, 100% { 
+		border-color: rgba(255, 255, 255, 0.3);
+		transform: scale(1);
+	}
+	50% { 
+		border-color: rgba(255, 255, 0, 0.8);
+		transform: scale(1.02);
+		box-shadow: 
+			0 0 25px rgba(255, 255, 0, 0.5),
+			inset 0 1px 3px rgba(255, 255, 255, 0.3);
+	}
+}
+
+@keyframes cinematic {
+	0%, 100% { 
+		background: var(--white-75);
+		filter: brightness(1);
+	}
+	25% { 
+		background: rgba(255, 215, 0, 0.2);
+		filter: brightness(1.2) hue-rotate(30deg);
+	}
+	50% { 
+		background: rgba(0, 255, 255, 0.15);
+		filter: brightness(1.4) hue-rotate(60deg);
+	}
+	75% { 
+		background: rgba(255, 0, 255, 0.1);
+		filter: brightness(1.2) hue-rotate(90deg);
+	}
+}
+
+@keyframes pulseFocus {
+	0%, 100% { 
+		background: var(--white-75);
+		transform: scale(1);
+	}
+	50% { 
+		background: rgba(255, 255, 255, 0.9);
+		transform: scale(1.01);
+		box-shadow: 
+			0 0 20px rgba(255, 255, 255, 0.6),
+			inset 0 2px 4px rgba(255, 255, 255, 0.3);
+	}
+}
+
+/* Efeito especial para jogador MVP */
+.focused-player-highlight.--mvp {
+	animation: mvpGlow 4s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes mvpGlow {
+	0%, 100% { 
+		background: var(--white-75);
+		box-shadow: 
+			0 0 15px rgba(255, 215, 0, 0.4),
+			inset 0 1px 3px rgba(255, 215, 0, 0.2);
+	}
+	33% { 
+		background: rgba(255, 215, 0, 0.25);
+		box-shadow: 
+			0 0 30px rgba(255, 215, 0, 0.7),
+			inset 0 2px 6px rgba(255, 215, 0, 0.4);
+	}
+	66% { 
+		background: rgba(255, 140, 0, 0.2);
+		box-shadow: 
+			0 0 25px rgba(255, 140, 0, 0.6),
+			inset 0 2px 5px rgba(255, 140, 0, 0.3);
+	}
 }

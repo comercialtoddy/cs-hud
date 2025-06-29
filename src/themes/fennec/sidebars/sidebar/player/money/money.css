@@ -5,8 +5,98 @@
 	align-self: center;
 	font-size: 1.5rem;
 	color: var(--sidebar-player-money-text);
+	border-radius: 0.4rem;
+	position: relative;
+	transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+	overflow: hidden;
+	background: linear-gradient(135deg, rgba(51, 204, 77, 0.05) 0%, transparent 100%);
+}
+
+.money::before {
+	content: '$';
+	position: absolute;
+	top: 50%;
+	left: -20px;
+	transform: translateY(-50%);
+	font-size: 3rem;
+	color: rgba(51, 204, 77, 0.1);
+	transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1);
+	z-index: -1;
+}
+
+.money::after {
+	content: '';
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: conic-gradient(
+		from 0deg,
+		transparent,
+		rgba(51, 204, 77, 0.2),
+		transparent,
+		rgba(51, 204, 77, 0.2),
+		transparent
+	);
+	opacity: 0;
+	transition: all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+	animation: moneyRotate 4s linear infinite;
+}
+
+.money:hover {
+	transform: translateY(-2px) scale(1.05);
+	background: linear-gradient(135deg, rgba(51, 204, 77, 0.15) 0%, rgba(51, 204, 77, 0.05) 100%);
+	color: rgba(51, 204, 77, 1);
+	text-shadow: 
+		0 0 8px rgba(51, 204, 77, 0.6),
+		0 0 16px rgba(51, 204, 77, 0.3);
+	box-shadow: 
+		0 4px 20px rgba(51, 204, 77, 0.4),
+		inset 0 1px 3px rgba(255, 255, 255, 0.2);
+}
+
+.money:hover::before {
+	left: -10px;
+	color: rgba(51, 204, 77, 0.3);
+	transform: translateY(-50%) rotate(10deg) scale(1.2);
+}
+
+.money:hover::after {
+	opacity: 1;
 }
 
 .money.--right {
 	text-align: right;
+}
+
+.money.--right::before {
+	right: -20px;
+	left: auto;
+}
+
+.money.--right:hover::before {
+	right: -10px;
+	transform: translateY(-50%) rotate(-10deg) scale(1.2);
+}
+
+/* Animação para dinheiro alto */
+.money.--rich {
+	animation: wealthyGlow 3s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes moneyRotate {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+}
+
+@keyframes wealthyGlow {
+	0%, 100% { 
+		box-shadow: 0 0 8px rgba(51, 204, 77, 0.3);
+		filter: brightness(1);
+	}
+	50% { 
+		box-shadow: 0 0 20px rgba(51, 204, 77, 0.6);
+		filter: brightness(1.2);
+	}
 }

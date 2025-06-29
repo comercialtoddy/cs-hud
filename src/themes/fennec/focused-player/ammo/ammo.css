@@ -1,6 +1,11 @@
 .wrapper {
 	display: flex;
 	align-items: flex-end;
+	transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.wrapper:hover {
+	transform: translateY(-1px);
 }
 
 .ammo {
@@ -9,6 +14,13 @@
 	font-size: 3rem;
 	min-width: fit-content;
 	max-width: 8.25ch;
+	border-radius: 0.6rem;
+	overflow: hidden;
+	transition: transform 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.ammo:hover {
+	transform: scale(1.02);
 }
 
 .inner {
@@ -18,13 +30,19 @@
 	display: flex;
 	align-items: flex-end;
 
-	transition: background-color var(--fade-fast-duration) ease;
+	transition: background-color var(--fade-fast-duration) cubic-bezier(0.4, 0.0, 0.2, 1);
+	border-radius: 0.4rem;
 }
 
 .reserve {
 	font-size: 2rem;
 	transform: translateY(-2px);
 	margin-left: 0.5rem;
+	transition: all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.reserve:hover {
+	transform: translateY(-4px) scale(1.05);
 }
 
 .ammo::before,
@@ -32,16 +50,18 @@
 	content: '';
 	width: 2rem;
 
-	transition: background-color var(--fade-fast-duration) ease;
+	transition: background-color var(--fade-fast-duration) cubic-bezier(0.4, 0.0, 0.2, 1);
 	z-index: -1;
 }
 
 .ammo::before {
 	transform: skewX(160deg) translateX(50%);
+	border-radius: 0.6rem 0 0 0.6rem;
 }
 
 .ammo::after {
 	transform: skewX(160deg) translateX(-50%);
+	border-radius: 0 0.6rem 0.6rem 0;
 }
 
 .inner.--ct,
